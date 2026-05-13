@@ -6,7 +6,7 @@
   <title>珠宝智慧管理 · 双版本方案</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-<style>
+
     :root {
       --gold: #C9A84C;
       --gold-light: #E8D48B;
@@ -45,23 +45,19 @@
     .bg-ambient{
       position:fixed;inset:0;z-index:-1;
       background:
-        radial-gradient(ellipse 800px 600px at 20% 30%, rgba(201,168,76,0.03), transparent 70%),
+        radial-gradient(ellipse 800px 600px at 20% 30%, rgba(201,168,76,0.04), transparent 70%),
         radial-gradient(ellipse 600px 800px at 80% 60%, rgba(201,168,76,0.02), transparent 70%),
-        radial-gradient(ellipse 400px 400px at 50% 80%, rgba(201,168,76,0.015), transparent 60%),
         var(--bg-dark);
     }
 
-    /* Navbar */
-    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(11,10,15,0.85);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--border-color);transition:all .3s}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(11,10,15,0.85);backdrop-filter:blur(16px);}
     .navbar.scrolled{background:rgba(11,10,15,0.95);box-shadow:0 2px 40px rgba(0,0,0,.4)}
     .navbar-brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:1px}
     .navbar-brand .brand-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--accent-gradient);border-radius:10px;font-size:18px;color:var(--bg-dark)}
     .navbar-links{display:flex;gap:4px;list-style:none}
     .navbar-links a{display:flex;align-items:center;gap:8px;padding:8px 18px;font-size:14px;font-weight:500;color:var(--text-secondary);border-radius:var(--radius-sm);transition:all .25s}
     .navbar-links a:hover,.navbar-links a.active{color:var(--gold);background:rgba(201,168,76,0.08)}
-    .navbar-links a i{font-size:14px}
 
-    /* Hero */
     .hero{padding:140px 48px 80px;max-width:1300px;margin:0 auto;text-align:center}
     .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;font-size:13px;font-weight:500;color:var(--gold);background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:100px;margin-bottom:24px}
     .hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
@@ -72,14 +68,12 @@
     .hero-stat .num{font-size:36px;font-weight:800;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .hero-stat .label{font-size:14px;color:var(--text-muted);margin-top:4px}
 
-    /* Section */
     .section{max-width:1300px;margin:0 auto;padding:60px 48px}
     .section-header{margin-bottom:48px}
-    .section-tag{display:inline-block;padding:4px 14px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15);border-radius:100px;margin-bottom:16px}
+    .section-tag{display:inline-block;padding:4px 14px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15);border-radius:100px;margin-bottom:12px}
     .section-title{font-size:36px;font-weight:700;margin-bottom:12px;letter-spacing:-.5px}
     .section-desc{font-size:16px;color:var(--text-secondary);max-width:700px}
 
-    /* Cards */
     .card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:32px;transition:all .3s}
     .card:hover{background:var(--bg-card-hover);border-color:rgba(201,168,76,0.2);box-shadow:0 0 30px rgba(201,168,76,0.08);transform:translateY(-2px)}
     .card-glow{position:relative;overflow:hidden}
@@ -95,15 +89,13 @@
     .card p,.card li{color:var(--text-secondary);font-size:15px;line-height:1.8}
     .card ul,.card ol{padding-left:20px;color:var(--text-secondary);font-size:14px;line-height:2.2}
 
-    /* Grids */
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
     .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
-    .grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:24px}
     @media (max-width:900px){
       .navbar{padding:0 20px}
       .navbar-links a span{display:none}
-      .grid-3,.grid-2-1,.grid-4{grid-template-columns:1fr}
+      .grid-3,.grid-4{grid-template-columns:1fr}
       .hero{padding:120px 20px 60px}
       .hero-stats{gap:30px}
       .section{padding:40px 20px}
@@ -116,23 +108,20 @@
       .hero-stats{flex-direction:column;gap:16px}
     }
 
-    /* Tags */
     .tag{display:inline-block;padding:2px 10px;font-size:12px;font-weight:500;border-radius:100px}
     .tag-gold{background:rgba(201,168,76,0.12);color:var(--gold)}
     .tag-blue{background:rgba(100,160,255,0.12);color:#64A0FF}
     .tag-green{background:rgba(80,200,140,0.12);color:#50C88C}
     .tag-purple{background:rgba(160,120,255,0.12);color:#A078FF}
-    .tag-orange{background:rgba(255,160,50,0.12);color:#FFA032}
+    .tag-cyan{background:rgba(80,200,220,0.12);color:#50C8DC}
 
-    /* Module Tabs */
     .module-tabs{display:flex;gap:4px;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:4px;margin-bottom:32px;flex-wrap:wrap}
-    .module-tab{flex:1;padding:12px 20px;text-align:center;font-size:14px;font-weight:500;color:var(--text-secondary);border-radius:var(--radius-sm);cursor:pointer;transition:all .25s;min-width:120px;border:none;background:transparent;font-family:var(--font-sans)}
+    .module-tab{flex:1;padding:12px 20px;text-align:center;font-size:14px;font-weight:500;color:var(--text-secondary);border-radius:var(--radius-sm);cursor:pointer;transition:all .25s;min-width:120px;}
     .module-tab:hover{color:var(--text-primary);background:rgba(255,255,255,0.03)}
     .module-tab.active{color:var(--bg-dark);background:var(--accent-gradient);font-weight:600}
     .module-panel{display:none}
     .module-panel.active{display:block}
 
-    /* Tables */
     .table-wrap{overflow-x:auto;border:1px solid var(--border-color);border-radius:var(--radius-md)}
     table{width:100%;border-collapse:collapse;font-size:14px}
     thead{background:var(--bg-surface)}
@@ -141,90 +130,109 @@
     tr:last-child td{border-bottom:none}
     tr:hover td{background:rgba(255,255,255,0.02)}
 
-    /* Info Box */
     .info-box{background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.12);border-radius:var(--radius-sm);padding:18px 22px;margin:16px 0}
     .info-box p{font-size:14px;color:var(--text-secondary);margin:0}
     .info-box strong{color:var(--text-primary)}
 
-    /* Risk Matrix */
     .risk-matrix{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
     .risk-cell{padding:16px;text-align:center;border-radius:var(--radius-sm);font-size:14px;font-weight:500}
     .risk-high{background:rgba(255,80,80,0.1);color:#FF5050;border:1px solid rgba(255,80,80,0.2)}
     .risk-mid{background:rgba(255,180,50,0.1);color:#FFB432;border:1px solid rgba(255,180,50,0.2)}
     .risk-low{background:rgba(80,200,140,0.1);color:#50C88C;border:1px solid rgba(80,200,140,0.2)}
 
-    /* Score Ring */
-    .score-ring{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:50%;background:conic-gradient(var(--gold) var(--pct),var(--bg-surface) 0);position:relative;flex-shrink:0}
+    .score-ring{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:50%;background:conic-gradient(var(--gold) var(--pct),var(--bg-surface) 0);position:relative}
     .score-ring::after{content:'';position:absolute;inset:5px;background:var(--bg-card);border-radius:50%}
     .score-ring span{position:relative;z-index:1;color:var(--gold);font-size:22px;font-weight:800}
 
-    /* Flow Diagram */
-    .flow{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:16px 0}
-    .flow-step{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px 20px;text-align:center;min-width:130px;flex:1}
-    .flow-step .step-icon{font-size:28px;margin-bottom:6px}
-    .flow-step .step-label{font-size:13px;font-weight:600}
-    .flow-step .step-desc{font-size:12px;color:var(--text-muted);margin-top:2px}
-    .flow-arrow{color:var(--text-muted);font-size:20px}
-    @media (max-width:900px){.flow-arrow{display:none}}
+    /* MVP Timeline */
+    .mvp-timeline{position:relative;padding-left:40px}
+    .mvp-timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:var(--border-color)}
+    .mvp-step{position:relative;margin-bottom:32px}
+    .mvp-step:last-child{margin-bottom:0}
+    .mvp-step .dot{position:absolute;left:-34px;top:4px;width:20px;height:20px;border-radius:50%;border:3px solid var(--gold);background:var(--bg-dark);z-index:1}
+    .mvp-step .dot.done{background:var(--gold)}
+    .mvp-step .title{font-size:16px;font-weight:700;color:var(--gold-light);margin-bottom:6px}
+    .mvp-step .desc{font-size:14px;color:var(--text-secondary)}
+    .mvp-step .time{display:inline-block;padding:2px 10px;font-size:12px;color:var(--text-muted);background:var(--bg-surface);border-radius:100px;margin-top:4px}
 
-    /* Progress */
-    .progress-bar{height:6px;background:var(--bg-surface);border-radius:3px;overflow:hidden;margin:8px 0}
-    .progress-fill{height:100%;border-radius:3px;background:var(--accent-gradient)}
+    /* Architecture Diagram */
+    .arch{display:flex;align-items:stretch;gap:16px;flex-wrap:wrap;padding:20px 0}
+    .arch-layer{flex:1;min-width:200px;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;text-align:center}
+    .arch-layer .layer-icon{font-size:32px;margin-bottom:8px}
+    .arch-layer .layer-title{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px}
+    .arch-layer .layer-items{font-size:12px;color:var(--text-secondary);line-height:2}
 
-    /* Chart (deferred) */
-    .chart-box{position:relative;width:100%;min-height:240px}
-    .chart-box canvas{width:100%!important;height:auto!important;max-height:240px}
+    /* LLM tier badges */
+    .llm-tier{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+    .llm-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500}
+    .llm-free{background:rgba(80,200,140,0.12);color:#50C88C;border:1px solid rgba(80,200,140,0.2)}
+    .llm-local{background:rgba(100,160,255,0.12);color:#64A0FF;border:1px solid rgba(100,160,255,0.2)}
+    .llm-api{background:rgba(255,160,50,0.12);color:#FFA032;border:1px solid rgba(255,160,50,0.2)}
 
-    /* Footer */
     .footer{text-align:center;padding:40px 48px;border-top:1px solid var(--border-color);color:var(--text-muted);font-size:13px}
-
-    /* Collapsible section */
-    .collapse-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:8px 0;color:var(--gold);font-size:14px;font-weight:500}
-    .collapse-toggle i{transition:transform .3s}
-    .collapse-toggle.active i{transform:rotate(180deg)}
-    .collapse-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
-    .collapse-body.open{max-height:5000px}
   
-    /* Version Toggle */
-    .version-toggle {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 12px;
-      padding: 3px;
-      border: 1px solid var(--border-color);
-    }
-    .toggle-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
-      border: none;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: var(--font-sans);
-      cursor: pointer;
-      transition: all 0.25s;
-      background: transparent;
-      color: var(--text-secondary);
-    }
-    .toggle-btn i { font-size: 13px; }
-    .toggle-btn.active {
-      background: var(--accent-gradient);
-      color: var(--bg-dark);
-      box-shadow: 0 2px 12px rgba(201,168,76,0.3);
-    }
-    .toggle-btn:not(.active):hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
-    .version-panel { display: none; }
-    .version-panel.active { display: block; }
+/* === Version Toggle === */
+.version-toggle {
+  display: flex; align-items: center; gap: 4px;
+  background: rgba(255,255,255,0.04); border-radius: 12px;
+  padding: 3px; border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+.toggle-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 16px; border: none; border-radius: 9px;
+  font-size: 13px; font-weight: 600; font-family: var(--font-sans);
+  cursor: pointer; transition: all 0.25s;
+  background: transparent; color: var(--text-secondary);
+}
+.toggle-btn i { font-size: 13px; }
+.toggle-btn.active {
+  background: var(--accent-gradient); color: var(--bg-dark);
+  box-shadow: 0 2px 12px rgba(201,168,76,0.3);
+}
+.toggle-btn:not(.active):hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+.version-panel { display: none; }
+.version-panel.active { display: block; }
 
-    /* Legacy tab overrides */
-    .legacy-mode .navbar-links a[href*="mvp"] { display: none; }
-    .legacy-mode .navbar-links a { font-size: 13px; padding: 6px 12px; }
+
+.legacy-content { margin: 0 auto; padding: 0 48px; }
+
+@media (max-width: 768px) {
+  .navbar { padding: 0 16px; flex-wrap: wrap; height: auto; min-height: 56px; gap: 6px; }
+  .navbar-links { display: none; }
+  .version-toggle { order: 1; margin-left: auto; }
+  .toggle-btn { padding: 4px 10px; font-size: 12px; }
+  .legacy-content { padding: 0 16px; }
+  
+}
+@media (max-width: 480px) {
+  .toggle-btn span { display: none; }
+}
+
+  
+/* === Legacy Navbar (top-right) === */
+.legacy-navbar {
+  position: sticky; top: 72px; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 56px;
+  background: rgba(11,10,15,0.88); backdrop-filter: blur(16px) saturate(1.3);
+  border-bottom: 1px solid var(--border-color);
+}
+.legacy-navbar-brand {
+  font-size: 15px; font-weight: 700; color: var(--gold-light);
+  display: flex; align-items: center; gap: 8px;
+}
+.legacy-navbar-links {
+  display: flex; gap: 2px;
+}
+.legacy-navbar-links .legacy-tab {
+  padding: 6px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
+  color: var(--text-secondary); text-decoration: none; transition: all 0.2s;
+  cursor: pointer;
+}
+.legacy-navbar-links .legacy-tab:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+.legacy-navbar-links .legacy-tab.active { background: rgba(201,168,76,0.12); color: var(--gold-light); }
 </style>
-  </style>
 </head>
 <body>
 <div class="bg-ambient"></div>
@@ -232,18 +240,25 @@
   <div class="navbar-brand"><div class="brand-icon"><i class="fas fa-gem"></i></div><span>宝石智擎</span></div>
   <div class="version-toggle">
     <button class="toggle-btn active" data-version="mvp" onclick="switchVersion('mvp')">
-      <i class="fas fa-rocket"></i> MVP 方案
+      <i class="fas fa-rocket"></i> <span>MVP 方案</span>
     </button>
     <button class="toggle-btn" data-version="legacy" onclick="switchVersion('legacy')">
-      <i class="fas fa-history"></i> 传统方案
+      <i class="fas fa-history"></i> <span>传统方案</span>
     </button>
   </div>
   <ul class="navbar-links">
-    <li><a href="#mvp-overview" class="active"><i class="fas fa-compass"></i><span>总览</span></a></li>
-    <li><a href="#mvp-methodology"><i class="fas fa-cogs"></i><span>方法论</span></a></li>
-    <li><a href="#mvp-systems"><i class="fas fa-file-alt"></i><span>方案详情</span></a></li>
+    <li><a href="#home" class="active"><i class="fas fa-compass"></i><span>总览</span></a></li>
+    <li><a href="#methodology"><i class="fas fa-cogs"></i><span>方法论</span></a></li>
+    <li><a href="#requirements"><i class="fas fa-file-alt"></i><span>方案详情</span></a></li>
   </ul>
-</nav><div id="mvp" class="version-panel active"><section class="hero" id="home">
+</nav>
+
+<div class="version-panel active" id="mvp">
+
+
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
   <div class="hero-badge"><i class="fas fa-crown"></i> 2026年5月 · OpenClaw + Skills + LLM 最小MVP</div>
   <h1>珠宝智慧管理<br/><span class="gold-text">快速验证·四步启动</span></h1>
   <p>
@@ -252,7 +267,7 @@
   </p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="num">4</div><div class="label">核心系统</div></div>
-    <div class="hero-stat"><div class="num">0~200</div><div class="label">单系统MVP周期</div></div>
+    <div class="hero-stat"><div class="num">简单快速</div><div class="label">单系统MVP周期</div></div>
     <div class="hero-stat"><div class="num">3~7天</div><div class="label">单系统MVP周期</div></div>
   </div>
 </section>
@@ -271,7 +286,7 @@
         MIT协议开源·自托管<br/>
         任务编排·工具调用·上下文管理<br/>
         可本地部署/云服务器<br/>
-        无授权负担
+        零授权投入
       </div>
     </div>
     <div class="arch-layer">
@@ -289,7 +304,7 @@
       <div class="layer-title">LLM（决策大脑）</div>
       <div class="layer-items">
         分级选型：按任务复杂度匹配<br/>
-        <span style="color:#50C88C;">可用层</span>: GLM-4-Flash / Qwen-Turbo<br/>
+        <span style="color:#50C88C;">免费层</span>: GLM-4-Flash / Qwen-Turbo<br/>
         <span style="color:#64A0FF;">本地层</span>: Qwen2.5-7B (Ollama)<br/>
         <span style="color:#FFA032;">API层</span>: DeepSeek-V3 / 豆包Pro
       </div>
@@ -310,7 +325,7 @@
       <div class="dot done"></div>
       <div class="title">Step 1 · 环境就绪（Day 0 ~ 0.5）</div>
       <div class="desc">
-        部署 OpenClaw（Docker 一键启动或阿里云镜像部署）→ 配置 LLM 接入（推荐阿里云百炼充足额度或 Ollama 本地模型）→ 安装 ClawHub 基础技能包（Python执行、文件读写、Web请求）
+        部署 OpenClaw（Docker 一键启动或阿里云镜像部署）→ 配置 LLM 接入（推荐阿里云百炼免费额度或 Ollama 本地模型）→ 安装 ClawHub 基础技能包（Python执行、文件读写、Web请求）
       </div>
       <div class="time">约0.5天</div>
     </div>
@@ -356,7 +371,7 @@
       <div class="card">
         <div style="font-size:28px;margin-bottom:8px;">💰</div>
         <h4>LLM分级消费</h4>
-        <p>简单任务用可用模型（GLM-4-Flash），结构化分析用本地模型（Qwen2.5-7B），复杂推理用廉价API（DeepSeek-V3）。绝不浪费token。</p>
+        <p>简单任务用免费模型（GLM-4-Flash），结构化分析用本地模型（Qwen2.5-7B），复杂推理用廉价API（DeepSeek-V3）。绝不浪费token。</p>
       </div>
     </div>
   </div>
@@ -367,7 +382,7 @@
   <div class="section-header">
     <span class="section-tag">需求 + 可行</span>
     <h2 class="section-title">四大系统 · OpenClaw MVP方案</h2>
-    <p class="section-desc">每个系统给出「需求概述 → OpenClaw技术方案 → Skill清单 → LLM选型 → MVP验证指标 → 实施路径」完整链路</p>
+    <p class="section-desc">每个系统给出「需求概述 → OpenClaw技术方案 → Skill清单 → LLM选型 → MVP验证指标 → 投入估算」完整链路</p>
   </div>
 
   <!-- System Tabs -->
@@ -384,8 +399,8 @@
       <div class="card card-glow">
         <div class="card-icon gold-bg"><i class="fas fa-microscope"></i></div>
         <h3>需求概述</h3>
-        <p>质检员需人工解读光谱仪输出的谱图（拉曼/红外/紫外），判断样品合格与否。效率低、标准不统一、人员培养周期长。</p>
-        <p style="margin-top:8px;"><strong>MVP目标：</strong>输入CSV/图片格式的光谱数据 → 自动提取特征峰 → 比对标准谱库 → 输出"宝石类型识别 · 品质等级描述 · 异常特征提醒/疑似"结论。</p>
+        <p>质检员需人工解读光谱仪输出的谱图（拉曼/红外/紫外），识别宝石类型、品质等级及异常特征。效率低、标准不统一、人员培养周期长。</p>
+        <p style="margin-top:8px;"><strong>MVP目标：</strong>输入CSV/图片格式的光谱数据 → 自动提取特征峰 → 比对标准谱库 → 输出"合格/不合格/疑似"结论。</p>
       </div>
       <div class="card card-glow">
         <div class="card-icon gold-bg"><i class="fas fa-cogs"></i></div>
@@ -394,18 +409,9 @@
         <p><strong>OpenClaw方案</strong>：</p>
         <ul>
           <li>OpenClaw 调用 <strong>Python执行Skill</strong> 运行信号处理脚本（SciPy寻峰+平滑，<strong>10行代码搞定</strong>）</li>
-          <li>LLM 读取处理结果，<strong>直接判断</strong>是否合格（LLM懂谱图语义，不需要训练模型）</li>
+          <li>LLM 读取处理结果，<strong>直接判断</strong>宝石类型+品质+异常（LLM懂谱图语义，不需要训练模型）</li>
           <li>标准谱库存为CSV文件，Skill 负责相似度计算</li>
         </ul>
-          <div class="output-example" style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.15);border-radius:12px;padding:16px;margin-top:12px;">
-            <div style="font-size:12px;color:var(--gold-light);margin-bottom:8px;"><i class="fas fa-print"></i> LLM 解析输出示例</div>
-            <code style="font-size:13px;line-height:1.8;color:var(--text-primary); display:block; white-space:pre-wrap;">
-宝石类型：红宝石（天然）
-品质等级：Vivid Red, 包体少量, 净度VS
-异常提醒：694nm处强度异常, 疑似热处理痕迹
-建议：需进一步显微观察确认处理程度
-            </code>
-          </div>
       </div>
     </div>
 
@@ -425,11 +431,11 @@
           </div>
           <div>
             <div class="llm-tier">
-              <span class="llm-badge llm-free">🆓 GLM-4-Flash (可用)</span>
+              <span class="llm-badge llm-free">🆓 GLM-4-Flash (免费)</span>
               <span class="llm-badge llm-local">💻 Qwen2.5-7B (本地)</span>
             </div>
             <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
-              <strong>方案A（零投入）：</strong> GLM-4-Flash 可用API → 直接读谱图数据+判断结果<br/>
+              <strong>方案A（快速）：</strong> GLM-4-Flash 免费API → 直接读谱图数据+判断结果<br/>
               <strong>方案B（本地优先）：</strong> Ollama + Qwen2.5-7B → 数据不出本地<br/>
               两种方案均可跑通，<strong>推荐方案A起步</strong>，无需GPU
             </p>
@@ -443,22 +449,22 @@
         <div class="card">
           <h4>📋 MVP验证指标</h4>
           <ul>
-            <li><strong>输入</strong>：1张已知宝石类型识别 · 品质等级描述 · 异常特征提醒的谱图（CSV或图片）</li>
+            <li><strong>输入</strong>：1张已知合格/不合格的谱图（CSV或图片）</li>
             <li><strong>验证</strong>：系统输出结论与人工质检结果一致</li>
             <li><strong>通过标准</strong>：端到端跑通，输出格式清晰（>1次正确即通过MVP）</li>
             <li><strong>不追求</strong>：准确率、召回率、批量处理</li>
           </ul>
         </div>
         <div class="card">
-          <h4>⚡ 快速启动</h4>
+          <h4>💰 最小投入</h4>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈</div>
-            <div style="font-size:13px;color:var(--text-secondary);">仅使用可用API + 本地已有算力</div>
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0</div>
+            <div style="font-size:13px;color:var(--text-secondary);">仅使用免费API + 本地已有算力</div>
           </div>
           <table style="width:100%;font-size:13px;">
-            <tr><td>OpenClaw部署</td><td>（Docker自托管）</td></tr>
-            <tr><td>LLM调用</td><td>（GLM-4-Flash充足额度）</td></tr>
-            <tr><td>Skills</td><td>（ClawHub开源+自定义）</td></tr>
+            <tr><td>OpenClaw部署</td><td>¥0（Docker自托管）</td></tr>
+            <tr><td>LLM调用</td><td>¥0（GLM-4-Flash免费额度）</td></tr>
+            <tr><td>Skills</td><td>¥0（ClawHub开源+自定义）</td></tr>
             <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~5天</strong></td></tr>
           </table>
         </div>
@@ -468,10 +474,19 @@
     <div style="margin-top:24px;">
       <div class="info-box">
         <strong>与传统方案对比</strong>
-        <p style="margin-top:6px;">传统方案需要「算法工程师 + GPU + 标注数据 + 模型训练」约15~30天/数周工作量 → OpenClaw方案只需「业务人员 + 已有电脑 + 极低门槛」约3~5天/已有资源。核心差异：<strong>用LLM的语言理解能力替代了深度学习模型训练</strong>，LLM天然理解谱图中的峰形、基线趋势等语义特征。</p>
+        <p style="margin-top:6px;">传统方案需要「算法工程师 + GPU + 标注数据 + 模型训练」约15~30天/5~10万元 → OpenClaw方案只需「业务人员 + 已有电脑 + 零API费」约3~5天/0元。核心差异：<strong>用LLM的语言理解能力替代了深度学习模型训练</strong>，LLM天然理解谱图中的峰形、基线趋势等语义特征。</p>
       </div>
     </div>
-  </div>
+  
+          <div class="output-example" style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.15);border-radius:12px;padding:16px;margin-top:12px;">
+            <div style="font-size:12px;color:var(--gold-light);margin-bottom:8px;"><i class="fas fa-print"></i> LLM 解析输出示例</div>
+            <code style="font-size:13px;line-height:1.8;color:var(--text-primary); display:block; white-space:pre-wrap;">
+宝石类型：红宝石（天然）
+品质等级：Vivid Red, 包体少量, 净度VS
+异常提醒：694nm处强度异常, 疑似热处理痕迹
+建议：需进一步显微观察确认处理程度
+            </code>
+          </div></div>
 
   <!-- ==== 系统二：VR宝石穿戴 ==== -->
   <div class="module-panel" id="sys2">
@@ -511,12 +526,12 @@
           </div>
           <div>
             <div class="llm-tier">
-              <span class="llm-badge llm-free">🆓 Qwen-Turbo (可用)</span>
+              <span class="llm-badge llm-free">🆓 Qwen-Turbo (免费)</span>
               <span class="llm-badge llm-api">🔌 DeepSeek-V3 (廉价API)</span>
             </div>
             <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
-              <strong>方案A（叠加合成）：</strong> Qwen-Turbo 可用 → 生成PIL叠加脚本 → 秒级出图<br/>
-              <strong>方案B（AI生成）：</strong> 调用FLUX API（约.1/张）→ 效果更真实<br/>
+              <strong>方案A（叠加合成）：</strong> Qwen-Turbo 免费 → 生成PIL叠加脚本 → 秒级出图<br/>
+              <strong>方案B（AI生成）：</strong> 调用FLUX API（约¥0.1/张）→ 效果更真实<br/>
               <strong>推荐：先A后B</strong>，A跑通验证需求后升级B
             </p>
           </div>
@@ -536,15 +551,15 @@
           </ul>
         </div>
         <div class="card">
-          <h4>⚡ 快速启动</h4>
+          <h4>💰 最小投入</h4>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈~5</div>
-            <div style="font-size:13px;color:var(--text-secondary);">方案A可用，方案B每次约0.1元</div>
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0~5</div>
+            <div style="font-size:13px;color:var(--text-secondary);">方案A免费，方案B每次约0.1元</div>
           </div>
           <table style="width:100%;font-size:13px;">
-            <tr><td>OpenClaw部署</td><td>Docker自托管</td></tr>
-            <tr><td>LLM/API调用</td><td>按量计费</td></tr>
-            <tr><td>Skills</td><td>ClawHub开源</td></tr>
+            <tr><td>OpenClaw部署</td><td>¥0</td></tr>
+            <tr><td>LLM/API投入</td><td>¥0~5</td></tr>
+            <tr><td>Skills</td><td>¥0</td></tr>
             <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~5天</strong></td></tr>
           </table>
         </div>
@@ -554,7 +569,7 @@
     <div style="margin-top:24px;">
       <div class="info-box">
         <strong>与传统方案对比</strong>
-        <p style="margin-top:6px;">传统方案需要「3D建模师 + Three.js前端工程师 + MediaPipe算法」约30~60天/数周工作量 → OpenClaw方案只需「会传图片的人 + LLM一句话生成代码」约3~5天。<strong>核心差异：用AI图像生成和LLM代码生成替代了3D渲染管线</strong>，MVP阶段完全不碰3D。</p>
+        <p style="margin-top:6px;">传统方案需要「3D建模师 + Three.js前端工程师 + MediaPipe算法」约30~60天/5~20万元 → OpenClaw方案只需「会传图片的人 + LLM一句话生成代码」约3~5天/0~5元。<strong>核心差异：用AI图像生成和LLM代码生成替代了3D渲染管线</strong>，MVP阶段完全不碰3D。</p>
       </div>
     </div>
   </div>
@@ -599,13 +614,13 @@
           </div>
           <div>
             <div class="llm-tier">
-              <span class="llm-badge llm-free">🆓 GLM-4-Flash (可用)</span>
-              <span class="llm-badge llm-api">🔌 DeepSeek-V3 (.005/千tokens)</span>
+              <span class="llm-badge llm-free">🆓 GLM-4-Flash (免费)</span>
+              <span class="llm-badge llm-api">🔌 DeepSeek-V3 (¥0.005/千tokens)</span>
             </div>
             <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
-              <strong>日常分析用可用模型</strong> → 读取销量表格 → 输出趋势判断<br/>
+              <strong>日常分析用免费模型</strong> → 读取销量表格 → 输出趋势判断<br/>
               <strong>大促预测用DeepSeek-V3</strong> → 结合历史大促数据 + 今年活动日历 → 输出备货建议<br/>
-              月均token消耗预估：~3元
+              月均token消耗预估：¥0~3元
             </p>
           </div>
         </div>
@@ -624,15 +639,15 @@
           </ul>
         </div>
         <div class="card">
-          <h4>⚡ 快速启动</h4>
+          <h4>💰 最小投入</h4>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈~3/月</div>
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0~3/月</div>
             <div style="font-size:13px;color:var(--text-secondary);">纯API费，淘宝采集无需爬虫</div>
           </div>
           <table style="width:100%;font-size:13px;">
-            <tr><td>OpenClaw部署</td><td>Docker自托管</td></tr>
-            <tr><td>电商采集Skill</td><td>（ClawHub开源）</td></tr>
-            <tr><td>LLM调用</td><td>约3千~5千token/次</td></tr>
+            <tr><td>OpenClaw部署</td><td>¥0</td></tr>
+            <tr><td>电商采集Skill</td><td>¥0（ClawHub开源）</td></tr>
+            <tr><td>LLM调用</td><td>约¥0~3/月</td></tr>
             <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~7天</strong></td></tr>
           </table>
         </div>
@@ -686,14 +701,14 @@
           </div>
           <div>
             <div class="llm-tier">
-              <span class="llm-badge llm-free">🆓 GLM-4-Flash (可用)</span>
+              <span class="llm-badge llm-free">🆓 GLM-4-Flash (免费)</span>
               <span class="llm-badge llm-local">💻 Qwen2.5-7B (本地)</span>
             </div>
             <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
-              <strong>实体抽取：</strong> GLM-4-Flash可用模型即可（只需从文本中提取"品种、数量、价格"）<br/>
-              <strong>倾向判断：</strong> 同样的可用模型，设定判断规则（价格低于市场价=高倾向）<br/>
-              <strong>话术生成：</strong> DeepSeek-V3（.005/千tokens）效果更好，但GLM-4-Flash也够用<br/>
-              全链路可用模型可跑通
+              <strong>实体抽取：</strong> GLM-4-Flash免费模型即可（只需从文本中提取"品种、数量、价格"）<br/>
+              <strong>倾向判断：</strong> 同样的免费模型，设定判断规则（价格低于市场价=高倾向）<br/>
+              <strong>话术生成：</strong> DeepSeek-V3（¥0.005/千tokens）效果更好，但GLM-4-Flash也够用<br/>
+              全链路免费模型可跑通
             </p>
           </div>
         </div>
@@ -712,15 +727,15 @@
           </ul>
         </div>
         <div class="card">
-          <h4>⚡ 快速启动</h4>
+          <h4>💰 最小投入</h4>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈</div>
-            <div style="font-size:13px;color:var(--text-secondary);">企微API可用 + 可用模型</div>
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0</div>
+            <div style="font-size:13px;color:var(--text-secondary);">企微API免费 + 免费模型</div>
           </div>
           <table style="width:100%;font-size:13px;">
-            <tr><td>OpenClaw部署</td><td>Docker自托管</td></tr>
-            <tr><td>企微API</td><td>（企业微信可用）</td></tr>
-            <tr><td>LLM调用</td><td>（GLM-4-Flash充足额度）</td></tr>
+            <tr><td>OpenClaw部署</td><td>¥0</td></tr>
+            <tr><td>企微API</td><td>¥0（企业微信免费）</td></tr>
+            <tr><td>LLM调用</td><td>¥0（GLM-4-Flash免费额度）</td></tr>
             <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~7天</strong></td></tr>
           </table>
         </div>
@@ -730,7 +745,7 @@
     <div style="margin-top:24px;">
       <div class="info-box">
         <strong>与传统方案对比</strong>
-        <p style="margin-top:6px;">传统方案需要「后端工程师 + NLP算法 + 意图分类模型训练 + 话术流程开发」约30~45天/5~15万元 → OpenClaw方案只需「一个懂企微API的后端 + LLM的语义理解能力」约3~7天/已有资源。<strong>核心差异：LLM的指令遵循能力同时替代了实体抽取、意图分类、话术生成三个传统NLP环节。</strong></p>
+        <p style="margin-top:6px;">传统方案需要「后端工程师 + NLP算法 + 意图分类模型训练 + 话术流程开发」约30~45天/5~15万元 → OpenClaw方案只需「一个懂企微API的后端 + LLM的语义理解能力」约3~7天/0元。<strong>核心差异：LLM的指令遵循能力同时替代了实体抽取、意图分类、话术生成三个传统NLP环节。</strong></p>
       </div>
     </div>
   </div>
@@ -784,10 +799,10 @@
         </tr>
         <tr>
           <td><strong>MVP投入</strong></td>
-          <td style="color:#50C88C;font-weight:700;">≈</td>
-          <td style="color:#50C88C;font-weight:700;">≈~5</td>
-          <td style="color:#50C88C;font-weight:700;">≈~3/月</td>
-          <td style="color:#50C88C;font-weight:700;">≈</td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0</td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0~5</td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0~3/月</td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0</td>
         </tr>
         <tr>
           <td><strong>MVP周期</strong></td>
@@ -798,17 +813,17 @@
         </tr>
         <tr>
           <td><strong>传统方案投入</strong></td>
-          <td style="color:#FF5050;">复杂</td>
+          <td style="color:#FF5050;">¥5~10万</td>
           <td style="color:#FF5050;">¥5~20万</td>
           <td style="color:#FF5050;">¥10~30万</td>
           <td style="color:#FF5050;">¥5~15万</td>
         </tr>
         <tr>
-          <td><strong>效率提升</strong></td>
-          <td style="color:#50C88C;font-weight:700;">大幅简化</td>
-          <td style="color:#50C88C;font-weight:700;">大幅简化</td>
-          <td style="color:#50C88C;font-weight:700;">大幅简化</td>
-          <td style="color:#50C88C;font-weight:700;">大幅简化</td>
+          <td><strong>投入节省</strong></td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
         </tr>
         <tr>
           <td><strong>推荐优先级</strong></td>
@@ -835,7 +850,7 @@
       <p style="font-size:13px;">
         Docker: <code style="background:var(--bg-surface);padding:2px 6px;border-radius:4px;">docker run -d -p 8080:8080 openclaw/core</code><br/>
         或阿里云一键部署（搜索"OpenClaw 镜像"）<br/>
-        配置LLM：阿里云百炼充足额度 / Ollama
+        配置LLM：阿里云百炼免费额度 / Ollama
       </p>
       <div style="margin-top:8px;font-size:12px;color:var(--text-muted);">⏱ 约10分钟</div>
     </div>
@@ -869,20 +884,25 @@
     <i class="fas fa-gem" style="color:var(--gold);margin-right:6px;"></i>
     珠宝智慧管理 · OpenClaw MVP实施路径
   </p>
-  <p>报告生成：2026年5月13日 · 聚焦快速启动MVP验证 · 技术栈：OpenClaw + ClawHub Skills + LLM</p>
+  <p>报告生成：2026年5月13日 · 聚焦最小投入MVP验证 · 技术栈：OpenClaw + ClawHub Skills + LLM</p>
 </footer>
 
-</div><div id="legacy" class="version-panel">
-  <!-- legacy nav for internal linking -->
-  <div style="padding:90px 48px 0;max-width:1300px;margin:0 auto;">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;">
-      <a href="#legacy-systems" class="legacy-tag" style="padding:6px 14px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:8px;color:var(--gold-light);font-size:13px;font-weight:500;text-decoration:none;">系统概览</a>
-      <a href="#legacy-analysis" class="legacy-tag" style="padding:6px 14px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:8px;color:var(--gold-light);font-size:13px;font-weight:500;text-decoration:none;">需求分析</a>
-      <a href="#legacy-feasibility" class="legacy-tag" style="padding:6px 14px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:8px;color:var(--gold-light);font-size:13px;font-weight:500;text-decoration:none;">可行性分析</a>
-      <a href="#legacy-compare" class="legacy-tag" style="padding:6px 14px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:8px;color:var(--gold-light);font-size:13px;font-weight:500;text-decoration:none;">综合对比</a>
-    </div>
+
+
+</div>
+
+<div class="version-panel" id="legacy">
+<div class="legacy-navbar">
+  <div class="legacy-navbar-brand"><i class="fas fa-gem"></i> 传统技术方案</div>
+  <div class="legacy-navbar-links">
+    <a href="#legacy-systems" class="legacy-tab active"><i class="fas fa-th-large"></i> 系统概览</a>
+    <a href="#legacy-requirements" class="legacy-tab"><i class="fas fa-clipboard-list"></i> 需求分析</a>
+    <a href="#legacy-feasibility" class="legacy-tab"><i class="fas fa-check-circle"></i> 可行性分析</a>
+    <a href="#legacy-compare" class="legacy-tab"><i class="fas fa-chart-bar"></i> 综合对比</a>
   </div>
-  <section class="section">
+</div>
+<div class="legacy-content">
+  <section class="section" id="legacy-systems">
   <div class="grid-4">
     <div class="card card-glow">
       <div class="card-icon gold-bg"><i class="fas fa-microscope"></i></div>
@@ -926,7 +946,7 @@
 <!-- ================================================================ -->
 <!-- 需求分析 -->
 <!-- ================================================================ -->
-<section class="section" id="requirements">
+<section class="section" id="legacy-requirements">
   <div class="section-header">
     <div class="section-tag"><i class="fas fa-file-alt"></i> 第一部分</div>
     <h2 class="section-title">需求分析报告</h2>
@@ -1380,7 +1400,7 @@
 <!-- ================================================================ -->
 <!-- 可行性分析 -->
 <!-- ================================================================ -->
-<section class="section" id="feasibility">
+<section class="section" id="legacy-feasibility">
   <div class="section-header">
     <div class="section-tag"><i class="fas fa-chart-line"></i> 第二部分</div>
     <h2 class="section-title">可行性分析报告</h2>
@@ -1641,7 +1661,7 @@
 </section>
 
 <!-- ===== 综合对比 ===== -->
-<section class="section">
+<section class="section" id="legacy-compare">
   <div class="section-header">
     <h2 class="section-title">四大系统综合对比</h2>
     <p class="section-desc">从技术可行性、团队门槛、市场空间、合规风险四维度横向比较，辅助决策排序。</p>
@@ -1730,28 +1750,68 @@
 </footer>
 
 <!-- ================================================================ -->
-</div><script>
 
-  // Version toggle
-  function switchVersion(version) {
-    document.querySelectorAll('.toggle-btn').forEach(function(b){b.classList.remove('active')});
-    document.querySelector('.toggle-btn[data-version="'+version+'"]').classList.add('active');
-    document.querySelectorAll('.version-panel').forEach(function(p){p.classList.remove('active')});
-    document.getElementById(version).classList.add('active');
-    // Update navbar links visibility
-    var links = document.querySelectorAll('.navbar-links a');
-    if (version === 'legacy') {
-      // Hide MVP links, show legacy quick nav
-      document.querySelectorAll('.navbar-links a').forEach(function(a){a.style.display='none'});
-    } else {
-      document.querySelectorAll('.navbar-links a').forEach(function(a){a.style.display='flex'});
-    }
+</div>
+</div>
+
+<script>
+
+function switchVersion(v) {
+  document.querySelectorAll('.toggle-btn').forEach(function(b){b.classList.remove('active')});
+  document.querySelector('.toggle-btn[data-version="'+v+'"]').classList.add('active');
+  document.querySelectorAll('.version-panel').forEach(function(p){p.classList.remove('active')});
+  document.getElementById(v).classList.add('active');
+  var links = document.querySelectorAll('.navbar-links a');
+  if (v === 'legacy') {
+    links.forEach(function(a){a.style.display='none'});
+  } else {
+    links.forEach(function(a){a.style.display='flex'});
   }
+}
 
-  // Override existing scroll and tab handlers
+document.addEventListener('DOMContentLoaded', function(){
+  // Navbar scroll
+  document.querySelectorAll('.navbar-links a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.querySelectorAll('.navbar-links a').forEach(function(x){x.classList.remove('active')});
+      this.classList.add('active');
+    });
+  });
   window.addEventListener('scroll', function(){
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   });
+
+  // Legacy tabs click - smooth scroll
+  document.querySelectorAll('.legacy-tab').forEach(function(tab){
+    tab.addEventListener('click', function(e){
+      e.preventDefault();
+      document.querySelectorAll('.legacy-tab').forEach(function(t){t.classList.remove('active')});
+      this.classList.add('active');
+      var target = this.getAttribute('href');
+      if(target) {
+        var el = document.querySelector(target);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+  // Tab switching: sysTabs (MVP) + reqTabs/feaTabs (Legacy)
+  ['sysTabs', 'reqTabs', 'feaTabs'].forEach(function(id){
+    var container = document.getElementById(id);
+    if (!container) return;
+    var tabs = container.parentElement.querySelectorAll('.module-tab');
+    var panels = container.parentElement.querySelectorAll('.module-panel');
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        tabs.forEach(function(t){t.classList.remove('active')});
+        panels.forEach(function(p){p.classList.remove('active')});
+        this.classList.add('active');
+        var panel = document.getElementById(this.dataset.panel);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  });
+});
 </script>
 </body>
 </html>
