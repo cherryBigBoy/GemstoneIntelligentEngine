@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>珠宝智慧管理 四大系统 需求与可行性报告</title>
+  <title>珠宝智慧管理·OpenClaw MVP 实施路径</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     :root {
       --gold: #C9A84C;
@@ -45,23 +44,19 @@
     .bg-ambient{
       position:fixed;inset:0;z-index:-1;
       background:
-        radial-gradient(ellipse 800px 600px at 20% 30%, rgba(201,168,76,0.03), transparent 70%),
+        radial-gradient(ellipse 800px 600px at 20% 30%, rgba(201,168,76,0.04), transparent 70%),
         radial-gradient(ellipse 600px 800px at 80% 60%, rgba(201,168,76,0.02), transparent 70%),
-        radial-gradient(ellipse 400px 400px at 50% 80%, rgba(201,168,76,0.015), transparent 60%),
         var(--bg-dark);
     }
 
-    /* Navbar */
-    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(11,10,15,0.85);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--border-color);transition:all .3s}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(11,10,15,0.85);backdrop-filter:blur(16px);}
     .navbar.scrolled{background:rgba(11,10,15,0.95);box-shadow:0 2px 40px rgba(0,0,0,.4)}
     .navbar-brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:1px}
     .navbar-brand .brand-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--accent-gradient);border-radius:10px;font-size:18px;color:var(--bg-dark)}
     .navbar-links{display:flex;gap:4px;list-style:none}
     .navbar-links a{display:flex;align-items:center;gap:8px;padding:8px 18px;font-size:14px;font-weight:500;color:var(--text-secondary);border-radius:var(--radius-sm);transition:all .25s}
     .navbar-links a:hover,.navbar-links a.active{color:var(--gold);background:rgba(201,168,76,0.08)}
-    .navbar-links a i{font-size:14px}
 
-    /* Hero */
     .hero{padding:140px 48px 80px;max-width:1300px;margin:0 auto;text-align:center}
     .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;font-size:13px;font-weight:500;color:var(--gold);background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:100px;margin-bottom:24px}
     .hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
@@ -72,14 +67,12 @@
     .hero-stat .num{font-size:36px;font-weight:800;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .hero-stat .label{font-size:14px;color:var(--text-muted);margin-top:4px}
 
-    /* Section */
     .section{max-width:1300px;margin:0 auto;padding:60px 48px}
     .section-header{margin-bottom:48px}
-    .section-tag{display:inline-block;padding:4px 14px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15);border-radius:100px;margin-bottom:16px}
+    .section-tag{display:inline-block;padding:4px 14px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.15);border-radius:100px;margin-bottom:12px}
     .section-title{font-size:36px;font-weight:700;margin-bottom:12px;letter-spacing:-.5px}
     .section-desc{font-size:16px;color:var(--text-secondary);max-width:700px}
 
-    /* Cards */
     .card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:32px;transition:all .3s}
     .card:hover{background:var(--bg-card-hover);border-color:rgba(201,168,76,0.2);box-shadow:0 0 30px rgba(201,168,76,0.08);transform:translateY(-2px)}
     .card-glow{position:relative;overflow:hidden}
@@ -95,15 +88,13 @@
     .card p,.card li{color:var(--text-secondary);font-size:15px;line-height:1.8}
     .card ul,.card ol{padding-left:20px;color:var(--text-secondary);font-size:14px;line-height:2.2}
 
-    /* Grids */
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
     .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
-    .grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:24px}
     @media (max-width:900px){
       .navbar{padding:0 20px}
       .navbar-links a span{display:none}
-      .grid-3,.grid-2-1,.grid-4{grid-template-columns:1fr}
+      .grid-3,.grid-4{grid-template-columns:1fr}
       .hero{padding:120px 20px 60px}
       .hero-stats{gap:30px}
       .section{padding:40px 20px}
@@ -116,23 +107,20 @@
       .hero-stats{flex-direction:column;gap:16px}
     }
 
-    /* Tags */
     .tag{display:inline-block;padding:2px 10px;font-size:12px;font-weight:500;border-radius:100px}
     .tag-gold{background:rgba(201,168,76,0.12);color:var(--gold)}
     .tag-blue{background:rgba(100,160,255,0.12);color:#64A0FF}
     .tag-green{background:rgba(80,200,140,0.12);color:#50C88C}
     .tag-purple{background:rgba(160,120,255,0.12);color:#A078FF}
-    .tag-orange{background:rgba(255,160,50,0.12);color:#FFA032}
+    .tag-cyan{background:rgba(80,200,220,0.12);color:#50C8DC}
 
-    /* Module Tabs */
     .module-tabs{display:flex;gap:4px;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:4px;margin-bottom:32px;flex-wrap:wrap}
-    .module-tab{flex:1;padding:12px 20px;text-align:center;font-size:14px;font-weight:500;color:var(--text-secondary);border-radius:var(--radius-sm);cursor:pointer;transition:all .25s;min-width:120px;border:none;background:transparent;font-family:var(--font-sans)}
+    .module-tab{flex:1;padding:12px 20px;text-align:center;font-size:14px;font-weight:500;color:var(--text-secondary);border-radius:var(--radius-sm);cursor:pointer;transition:all .25s;min-width:120px;}
     .module-tab:hover{color:var(--text-primary);background:rgba(255,255,255,0.03)}
     .module-tab.active{color:var(--bg-dark);background:var(--accent-gradient);font-weight:600}
     .module-panel{display:none}
     .module-panel.active{display:block}
 
-    /* Tables */
     .table-wrap{overflow-x:auto;border:1px solid var(--border-color);border-radius:var(--radius-md)}
     table{width:100%;border-collapse:collapse;font-size:14px}
     thead{background:var(--bg-surface)}
@@ -141,49 +129,46 @@
     tr:last-child td{border-bottom:none}
     tr:hover td{background:rgba(255,255,255,0.02)}
 
-    /* Info Box */
     .info-box{background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.12);border-radius:var(--radius-sm);padding:18px 22px;margin:16px 0}
     .info-box p{font-size:14px;color:var(--text-secondary);margin:0}
     .info-box strong{color:var(--text-primary)}
 
-    /* Risk Matrix */
     .risk-matrix{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
     .risk-cell{padding:16px;text-align:center;border-radius:var(--radius-sm);font-size:14px;font-weight:500}
     .risk-high{background:rgba(255,80,80,0.1);color:#FF5050;border:1px solid rgba(255,80,80,0.2)}
     .risk-mid{background:rgba(255,180,50,0.1);color:#FFB432;border:1px solid rgba(255,180,50,0.2)}
     .risk-low{background:rgba(80,200,140,0.1);color:#50C88C;border:1px solid rgba(80,200,140,0.2)}
 
-    /* Score Ring */
-    .score-ring{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:50%;background:conic-gradient(var(--gold) var(--pct),var(--bg-surface) 0);position:relative;flex-shrink:0}
+    .score-ring{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:50%;background:conic-gradient(var(--gold) var(--pct),var(--bg-surface) 0);position:relative}
     .score-ring::after{content:'';position:absolute;inset:5px;background:var(--bg-card);border-radius:50%}
     .score-ring span{position:relative;z-index:1;color:var(--gold);font-size:22px;font-weight:800}
 
-    /* Flow Diagram */
-    .flow{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:16px 0}
-    .flow-step{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px 20px;text-align:center;min-width:130px;flex:1}
-    .flow-step .step-icon{font-size:28px;margin-bottom:6px}
-    .flow-step .step-label{font-size:13px;font-weight:600}
-    .flow-step .step-desc{font-size:12px;color:var(--text-muted);margin-top:2px}
-    .flow-arrow{color:var(--text-muted);font-size:20px}
-    @media (max-width:900px){.flow-arrow{display:none}}
+    /* MVP Timeline */
+    .mvp-timeline{position:relative;padding-left:40px}
+    .mvp-timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:var(--border-color)}
+    .mvp-step{position:relative;margin-bottom:32px}
+    .mvp-step:last-child{margin-bottom:0}
+    .mvp-step .dot{position:absolute;left:-34px;top:4px;width:20px;height:20px;border-radius:50%;border:3px solid var(--gold);background:var(--bg-dark);z-index:1}
+    .mvp-step .dot.done{background:var(--gold)}
+    .mvp-step .title{font-size:16px;font-weight:700;color:var(--gold-light);margin-bottom:6px}
+    .mvp-step .desc{font-size:14px;color:var(--text-secondary)}
+    .mvp-step .time{display:inline-block;padding:2px 10px;font-size:12px;color:var(--text-muted);background:var(--bg-surface);border-radius:100px;margin-top:4px}
 
-    /* Progress */
-    .progress-bar{height:6px;background:var(--bg-surface);border-radius:3px;overflow:hidden;margin:8px 0}
-    .progress-fill{height:100%;border-radius:3px;background:var(--accent-gradient)}
+    /* Architecture Diagram */
+    .arch{display:flex;align-items:stretch;gap:16px;flex-wrap:wrap;padding:20px 0}
+    .arch-layer{flex:1;min-width:200px;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;text-align:center}
+    .arch-layer .layer-icon{font-size:32px;margin-bottom:8px}
+    .arch-layer .layer-title{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px}
+    .arch-layer .layer-items{font-size:12px;color:var(--text-secondary);line-height:2}
 
-    /* Chart (deferred) */
-    .chart-box{position:relative;width:100%;min-height:240px}
-    .chart-box canvas{width:100%!important;height:auto!important;max-height:240px}
+    /* LLM tier badges */
+    .llm-tier{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+    .llm-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500}
+    .llm-free{background:rgba(80,200,140,0.12);color:#50C88C;border:1px solid rgba(80,200,140,0.2)}
+    .llm-local{background:rgba(100,160,255,0.12);color:#64A0FF;border:1px solid rgba(100,160,255,0.2)}
+    .llm-api{background:rgba(255,160,50,0.12);color:#FFA032;border:1px solid rgba(255,160,50,0.2)}
 
-    /* Footer */
     .footer{text-align:center;padding:40px 48px;border-top:1px solid var(--border-color);color:var(--text-muted);font-size:13px}
-
-    /* Collapsible section */
-    .collapse-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:8px 0;color:var(--gold);font-size:14px;font-weight:500}
-    .collapse-toggle i{transition:transform .3s}
-    .collapse-toggle.active i{transform:rotate(180deg)}
-    .collapse-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
-    .collapse-body.open{max-height:5000px}
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -193,783 +178,494 @@
 <div class="bg-ambient"></div>
 
 <nav class="navbar" id="navbar">
-  <div class="navbar-brand"><div class="brand-icon"><i class="fas fa-gem"></i></div><span>宝石智擎·报告集</span></div>
+  <div class="navbar-brand"><div class="brand-icon"><i class="fas fa-gem"></i></div><span>宝石智擎·MVP实施路径</span></div>
   <ul class="navbar-links">
     <li><a href="#home" class="active"><i class="fas fa-compass"></i><span>总览</span></a></li>
-    <li><a href="#requirements"><i class="fas fa-file-alt"></i><span>需求分析</span></a></li>
-    <li><a href="#feasibility"><i class="fas fa-chart-line"></i><span>可行性分析</span></a></li>
+    <li><a href="#methodology"><i class="fas fa-cogs"></i><span>MVP方法论</span></a></li>
+    <li><a href="#requirements"><i class="fas fa-file-alt"></i><span>需求+可行</span></a></li>
   </ul>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <div class="hero-badge"><i class="fas fa-crown"></i> 2026年5月 · 珠宝行业数字化转型</div>
-  <h1>珠宝智慧管理<br/><span class="gold-text">四大核心系统</span></h1>
+  <div class="hero-badge"><i class="fas fa-crown"></i> 2026年5月 · OpenClaw + Skills + LLM 最小MVP</div>
+  <h1>珠宝智慧管理<br/><span class="gold-text">零成本验证·四步启动</span></h1>
   <p>
-    围绕<strong>质检智能化、销售体验化、渠道管理数据化、交易自动化</strong>四大方向，
-    构建光谱AI质检、VR虚拟试戴、线上渠道智能库存、群聊交易机器人四位一体的数字化解决方案。
+    抛弃复杂的基础设施搭建，基于<strong>OpenClaw开源Agent框架</strong> + <strong>ClawHub技能市场</strong> + <strong>零/低成本LLM</strong>，
+    以最小的技术投入快速验证四个珠宝业务系统的可行性。
   </p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="num">4</div><div class="label">核心系统</div></div>
-    <div class="hero-stat"><div class="num">16</div><div class="label">功能模块</div></div>
-    <div class="hero-stat"><div class="num">4</div><div class="label">可行性评分均≥4.0</div></div>
+    <div class="hero-stat"><div class="num">0~￥200</div><div class="label">单系统MVP费用</div></div>
+    <div class="hero-stat"><div class="num">3~7天</div><div class="label">单系统MVP周期</div></div>
   </div>
 </section>
 
-<!-- ===== SYSTEM OVERVIEW ===== -->
+<!-- ===== 架构总览 ===== -->
 <section class="section">
-  <div class="grid-4">
-    <div class="card card-glow">
-      <div class="card-icon gold-bg"><i class="fas fa-microscope"></i></div>
-      <h3>系统一<br/>光谱AI质检</h3>
-      <p>基于传统信号处理+标准谱库比对的智能质检辅助系统，零深度学习基础也能上手的谱图分析方案。</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
-        <span class="tag tag-gold">信号处理</span>
-        <span class="tag tag-gold">寻峰匹配</span>
+  <div class="section-header">
+    <h2 class="section-title">架构理念：三要素驱动</h2>
+    <p class="section-desc">用最简技术栈实现业务闭环，拒绝过度工程化</p>
+  </div>
+  <div class="arch">
+    <div class="arch-layer">
+      <div class="layer-icon">🦞</div>
+      <div class="layer-title">OpenClaw（运行时）</div>
+      <div class="layer-items">
+        MIT协议开源·自托管<br/>
+        任务编排·工具调用·上下文管理<br/>
+        可本地部署/云服务器<br/>
+        零授权费用
       </div>
     </div>
-    <div class="card card-glow">
-      <div class="card-icon blue-bg"><i class="fas fa-vr-cardboard"></i></div>
-      <h3>系统二<br/>VR宝石穿戴</h3>
-      <p>用AI 3D生成+多角度精灵图快速实现虚拟试戴，不学建模也能上手的AR试戴方案。</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
-        <span class="tag tag-blue">AI生成3D</span>
-        <span class="tag tag-blue">精灵图方案</span>
+    <div class="arch-layer">
+      <div class="layer-icon">🔧</div>
+      <div class="layer-title">Skills（能力单元）</div>
+      <div class="layer-items">
+        ClawHub 13000+ 开源技能<br/>
+        自定义Skill = Markdown文件<br/>
+        覆盖: 数据采集/文件处理/API对接<br/>
+        Web自动化/图像处理/代码执行
       </div>
     </div>
-    <div class="card card-glow">
-      <div class="card-icon orange-bg"><i class="fas fa-shopping-cart"></i></div>
-      <h3>系统三<br/>线上渠道智能库存</h3>
-      <p>聚焦电商渠道（淘宝/抖音/京东/小红书），基于大促日历+销量脉冲预测的库存管理方案，线下店协同降为极简。</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
-        <span class="tag tag-orange">多平台OMS</span>
-        <span class="tag tag-orange">大促预测</span>
-      </div>
-    </div>
-    <div class="card card-glow">
-      <div class="card-icon purple-bg"><i class="fas fa-robot"></i></div>
-      <h3>系统四<br/>群聊交易机器人</h3>
-      <p>微信群/企微群消息监控，NLP识别货物信息后自动私聊+话术引擎跟单，高倾向时通知用户接入。</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
-        <span class="tag tag-purple">NLP意图识别</span>
-        <span class="tag tag-purple">话术引擎</span>
+    <div class="arch-layer">
+      <div class="layer-icon">🧠</div>
+      <div class="layer-title">LLM（决策大脑）</div>
+      <div class="layer-items">
+        分级选型：按任务复杂度匹配<br/>
+        <span style="color:#50C88C;">免费层</span>: GLM-4-Flash / Qwen-Turbo<br/>
+        <span style="color:#64A0FF;">本地层</span>: Qwen2.5-7B (Ollama)<br/>
+        <span style="color:#FFA032;">API层</span>: DeepSeek-V3 / 豆包Pro
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ -->
-<!-- 需求分析 -->
-<!-- ================================================================ -->
+<!-- ===== MVP方法论 ===== -->
+<section class="section" id="methodology">
+  <div class="section-header">
+    <span class="section-tag">方法论</span>
+    <h2 class="section-title">MVP验证流程</h2>
+    <p class="section-desc">所有系统统一遵循"安装 → 编排 → 验证 → 迭代"四步闭环，每个MVP周期控制在7天以内</p>
+  </div>
+
+  <div class="mvp-timeline">
+    <div class="mvp-step">
+      <div class="dot done"></div>
+      <div class="title">Step 1 · 环境就绪（Day 0 ~ 0.5）</div>
+      <div class="desc">
+        部署 OpenClaw（Docker 一键启动或阿里云镜像部署）→ 配置 LLM 接入（推荐阿里云百炼免费额度或 Ollama 本地模型）→ 安装 ClawHub 基础技能包（Python执行、文件读写、Web请求）
+      </div>
+      <div class="time">约0.5天</div>
+    </div>
+    <div class="mvp-step">
+      <div class="dot"></div>
+      <div class="title">Step 2 · 核心技能开发（Day 0.5 ~ 2）</div>
+      <div class="desc">
+        针对每个系统，从 ClawHub 搜索已有的开源 Skill（电商采集、图像处理、企微对接等），缺失部分编写自定义 Skill（纯 Markdown，告诉 AI 怎么做即可）。<strong>一条 Skill 就是一个 .md 文件，10分钟完成。</strong>
+      </div>
+      <div class="time">约1~2天</div>
+    </div>
+    <div class="mvp-step">
+      <div class="dot"></div>
+      <div class="title">Step 3 · MVP验证闭环（Day 2 ~ 4）</div>
+      <div class="desc">
+        用真实的最小数据跑通全链路：OpenClaw 接收输入 → 调用对应 Skill 处理 → LLM 分析/生成结果 → 输出验证。验证标准：<strong>端到端跑通即为MVP完成</strong>，不追求准确率、不优化性能。
+      </div>
+      <div class="time">约1~2天</div>
+    </div>
+    <div class="mvp-step">
+      <div class="dot"></div>
+      <div class="title">Step 4 · 评估决策（Day 4 ~ 7）</div>
+      <div class="desc">
+        基于 MVP 运行结果评估：业务逻辑是否跑通？用户体验是否可接受？数据质量是否达标？<strong>通过 → 投入正式开发；不通过 → 调整方向或放弃。</strong>
+      </div>
+      <div class="time">约1天</div>
+    </div>
+  </div>
+
+  <div style="margin-top:36px;">
+    <h4 style="color:var(--gold-light);margin-bottom:16px;">核心原则</h4>
+    <div class="grid-3">
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:8px;">🎯</div>
+        <h4>砍到只剩骨架</h4>
+        <p>MVP只验证"这个需求是否值得做"，不做性能优化、不做异常处理、不做高可用。能用就行。</p>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:8px;">🔄</div>
+        <h4>Skill复用优先</h4>
+        <p>ClawHub已有13000+技能，先找现成的。找不到再自己写。自定义Skill只需写清楚"输入→处理→输出"即可。</p>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:8px;">💰</div>
+        <h4>LLM分级消费</h4>
+        <p>简单任务用免费模型（GLM-4-Flash），结构化分析用本地模型（Qwen2.5-7B），复杂推理用廉价API（DeepSeek-V3）。绝不浪费token。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 需求分析 + 可行性分析 ===== -->
 <section class="section" id="requirements">
   <div class="section-header">
-    <div class="section-tag"><i class="fas fa-file-alt"></i> 第一部分</div>
-    <h2 class="section-title">需求分析报告</h2>
-    <p class="section-desc">四大系统从业务背景、核心功能、技术架构到用户场景的全面需求梳理，聚焦落地可行性。</p>
+    <span class="section-tag">需求 + 可行</span>
+    <h2 class="section-title">四大系统 · OpenClaw MVP方案</h2>
+    <p class="section-desc">每个系统给出「需求概述 → OpenClaw技术方案 → Skill清单 → LLM选型 → MVP验证指标 → 成本估算」完整链路</p>
   </div>
 
-  <div class="module-tabs" id="reqTabs">
-    <button class="module-tab active" data-panel="req1">一：光谱AI质检</button>
-    <button class="module-tab" data-panel="req2">二：VR宝石穿戴</button>
-    <button class="module-tab" data-panel="req3">三：线上渠道智能库存</button>
-    <button class="module-tab" data-panel="req4">四：群聊交易机器人</button>
+  <!-- System Tabs -->
+  <div class="module-tabs" id="sysTabs">
+    <div class="module-tab active" data-panel="sys1" style="color:var(--gold);"><i class="fas fa-microscope"></i> 光谱AI质检</div>
+    <div class="module-tab" data-panel="sys2" style="color:#64A0FF;"><i class="fas fa-cube"></i> VR宝石穿戴</div>
+    <div class="module-tab" data-panel="sys3" style="color:#FFA032;"><i class="fas fa-chart-bar"></i> 线上库存</div>
+    <div class="module-tab" data-panel="sys4" style="color:#A078FF;"><i class="fas fa-robot"></i> 群聊机器人</div>
   </div>
 
-  <!-- ==================== PANEL 1 ==================== -->
-  <div class="module-panel active" id="req1">
-    <div class="grid-2-1">
-      <div class="card">
-        <h3><i class="fas fa-microscope" style="color:var(--gold);margin-right:8px;"></i>系统概述</h3>
-        <p style="margin-bottom:12px;">珠宝玉石质检是行业关键环节。传统光谱仪数据分析高度依赖资深质检员的经验判断，一份样品从采集到出具报告平均耗时25~40分钟。本系统以<strong>传统信号处理 + 标准谱图库比对</strong>为核心技术路线，无需深度学习背景即可实现大部分谱图自动解读，将质检效率大幅提升。</p>
-        <div class="info-box" style="margin-top:12px;">
-          <strong>针对"没有AI能力"的解决路径</strong>
-          <p style="font-size:13px;">谱图分析的本质是找特征峰+比标准库，可用 SciPy 的信号处理函数（find_peaks_cwt、Savitzky-Golay滤波）和 PeakUtils 库完成，无需深度学习。详见下文"技术落地路线"。</p>
-        </div>
-        <h4 style="margin-top:16px;">业务痛点</h4>
+  <!-- ==== 系统一：光谱AI质检 ==== -->
+  <div class="module-panel active" id="sys1">
+    <div class="grid-2">
+      <div class="card card-glow">
+        <div class="card-icon gold-bg"><i class="fas fa-microscope"></i></div>
+        <h3>需求概述</h3>
+        <p>质检员需人工解读光谱仪输出的谱图（拉曼/红外/紫外），判断样品合格与否。效率低、标准不统一、人员培养周期长。</p>
+        <p style="margin-top:8px;"><strong>MVP目标：</strong>输入CSV/图片格式的光谱数据 → 自动提取特征峰 → 比对标准谱库 → 输出"合格/不合格/疑似"结论。</p>
+      </div>
+      <div class="card card-glow">
+        <div class="card-icon gold-bg"><i class="fas fa-cogs"></i></div>
+        <h3>OpenClaw技术方案</h3>
+        <p><strong>传统方案</strong>：Python + SciPy + PeakUtils + 深度学习模型 → 门槛高，需算法工程师</p>
+        <p><strong>OpenClaw方案</strong>：</p>
         <ul>
-          <li>人工解读效率低：一份光谱报告人工分析需25~40分钟</li>
-          <li>判级标准不统一：不同质检员对相似谱图判级存在偏差</li>
-          <li>数据孤岛：历史检测数据未有效积累，知识无法复用</li>
-          <li>人才瓶颈：资深质检员培养周期3~5年，人才稀缺</li>
+          <li>OpenClaw 调用 <strong>Python执行Skill</strong> 运行信号处理脚本（SciPy寻峰+平滑，<strong>10行代码搞定</strong>）</li>
+          <li>LLM 读取处理结果，<strong>直接判断</strong>是否合格（LLM懂谱图语义，不需要训练模型）</li>
+          <li>标准谱库存为CSV文件，Skill 负责相似度计算</li>
         </ul>
       </div>
+    </div>
+
+    <div style="margin-top:24px;">
       <div class="card">
-        <h4>核心指标</h4>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>自动判级准确率</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:85%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">Phase 1（信号处理）: 80~85% · Phase 2（ML）: 88~92%</span>
-        </div>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>效率提升</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:75%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">单份报告：25~40min → ≤ 8min</span>
-        </div>
-        <div class="info-box">
-          <strong>技术门槛</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:30%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">Python基础即可起步，零深度学习入门</span>
+        <h4>📦 Skill清单 & LLM选型</h4>
+        <div class="grid-2" style="margin-top:12px;">
+          <div>
+            <table style="width:100%;font-size:13px;">
+              <thead><tr><th>Skill</th><th>来源</th><th>作用</th></tr></thead>
+              <tbody>
+                <tr><td>python-executor</td><td><span class="tag tag-green">ClawHub官方</span></td><td>运行Python谱图分析脚本</td></tr>
+                <tr><td>file-reader</td><td><span class="tag tag-green">ClawHub官方</span></td><td>读取CSV/图片格式谱图数据</td></tr>
+                <tr><td>spec-analysis</td><td><span class="tag tag-gold">自定义Skill</span></td><td>寻峰+基线校正+相似度计算</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="llm-tier">
+              <span class="llm-badge llm-free">🆓 GLM-4-Flash (免费)</span>
+              <span class="llm-badge llm-local">💻 Qwen2.5-7B (本地)</span>
+            </div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
+              <strong>方案A（零成本）：</strong> GLM-4-Flash 免费API → 直接读谱图数据+判断结果<br/>
+              <strong>方案B（本地优先）：</strong> Ollama + Qwen2.5-7B → 数据不出本地<br/>
+              两种方案均可跑通，<strong>推荐方案A起步</strong>，无需GPU
+            </p>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-brain" style="color:var(--gold);margin-right:6px;"></i>核心功能</h4>
-        <ol>
-          <li><strong>光谱数据采集</strong> — 对接主流光谱仪（拉曼/近红外/ICP-OES）数据接口，支持CSV/SPC等格式导入</li>
-          <li><strong>信号预处理</strong> — Savitzky-Golay降噪 + ALS自适应基线校正 + 归一化</li>
-          <li><strong>峰识别与特征提取</strong> — CWT连续小波变换寻峰，提取峰高/峰位/半高宽/峰面积</li>
-          <li><strong>标准谱图库比对</strong> — 基于GB/T 16552-2017建立宝石标准光谱库，余弦相似度匹配</li>
-          <li><strong>质检报告生成</strong> — 一键生成标准化PDF/Word质检报告</li>
-          <li><strong>知识库积累</strong> — 每次人工修正结果回流到数据库，持续改善匹配精度</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-cogs" style="color:var(--gold);margin-right:6px;"></i>技术架构与落地路线</h4>
-        <div class="table-wrap" style="margin-top:0;">
-          <table>
-            <thead><tr><th>Phase</th><th>方法</th><th>准确率</th><th>所需能力</th><th>工期</th></tr></thead>
-            <tbody>
-              <tr>
-                <td><span class="tag tag-green">Phase 1</span></td>
-                <td>信号处理 + 模板匹配<br/><span style="font-size:12px;color:var(--text-muted);">SciPy寻峰/PeakUtils/余弦相似度</span></td>
-                <td>80~85%</td>
-                <td>Python基础</td>
-                <td>2~3周</td>
-              </tr>
-              <tr>
-                <td><span class="tag tag-gold">Phase 2</span></td>
-                <td>传统ML（SVM/Random Forest）<br/><span style="font-size:12px;color:var(--text-muted);">scikit-learn 特征向量分类</span></td>
-                <td>88~92%</td>
-                <td>基础ML概念</td>
-                <td>3~4周</td>
-              </tr>
-              <tr>
-                <td><span class="tag tag-blue">Phase 3</span></td>
-                <td>深度学习（CNN/Transformer）<br/><span style="font-size:12px;color:var(--text-muted);">外包或调用现成API</span></td>
-                <td>95%+</td>
-                <td><strong>建议外包</strong></td>
-                <td>6~8周</td>
-              </tr>
-            </tbody>
-          </table>
+    <div style="margin-top:24px;">
+      <div class="grid-2">
+        <div class="card">
+          <h4>📋 MVP验证指标</h4>
+          <ul>
+            <li><strong>输入</strong>：1张已知合格/不合格的谱图（CSV或图片）</li>
+            <li><strong>验证</strong>：系统输出结论与人工质检结果一致</li>
+            <li><strong>通过标准</strong>：端到端跑通，输出格式清晰（>1次正确即通过MVP）</li>
+            <li><strong>不追求</strong>：准确率、召回率、批量处理</li>
+          </ul>
         </div>
-        <p style="font-size:13px;color:var(--gold);margin-top:12px;">
-          <i class="fas fa-lightbulb"></i> 建议：先 Phase 1 上线跑通，边积累标注数据边推进 Phase 3。核心模型训练可外包给中科谱光等专业公司。
-        </p>
-      </div>
-    </div>
-
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-code" style="color:var(--gold);margin-right:6px;"></i>关键工具链</h4>
-        <ul>
-          <li><strong>SciPy.signal</strong> — `find_peaks_cwt()` 连续小波变换寻峰，无需训练数据</li>
-          <li><strong>PeakUtils</strong> — 专做谱峰分析：峰高、峰面积、半高宽、峰匹配</li>
-          <li><strong>PyRaman</strong> — 开源拉曼光谱处理库，含降噪/基线校正/标准化</li>
-          <li><strong>标准谱图数据</strong> — 中国地质大学珠宝检测中心、GIA 公开宝石标准光谱可整理入库</li>
-          <li><strong>After Phase 1</strong> — 积累到一定标注数据后，用 scikit-learn 训练 SVM 分类器即可</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-user-tie" style="color:var(--gold);margin-right:6px;"></i>典型场景</h4>
-        <div class="info-box" style="margin-bottom:8px;">
-          <strong>质检员小王</strong>
-          <p style="font-size:13px;">将翡翠样品放入光谱仪，系统自动降噪、寻峰、比对标样库，3分钟后输出"疑似A货翡翠，置信度87%，建议人工确认"。小王审核确认后一键出报告，日均处理量从15份提升至40份。</p>
-        </div>
-        <div class="info-box">
-          <strong>质检主管李工</strong>
-          <p style="font-size:13px;">在后台看到质检统计：本月自动判级准确率82.3%，人工修正最多的前3类宝石标记出来，反馈给Phase 2模型重新训练。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== PANEL 2 ==================== -->
-  <div class="module-panel" id="req2">
-    <div class="grid-2-1">
-      <div class="card">
-        <h3><i class="fas fa-vr-cardboard" style="color:#64A0FF;margin-right:8px;"></i>系统概述</h3>
-        <p style="margin-bottom:12px;">珠宝线上销售最大痛点是消费者无法实物试戴，退货率高达15~25%。本系统通过手机摄像头即可实现手串、项链等产品的实时虚拟试戴效果。针对<strong>"没有3D建模基础"</strong>的问题，提供多条快速上手的路径。</p>
-        <div class="info-box" style="margin-top:12px;">
-          <strong>针对"不会3D建模"的解决路径</strong>
-          <p style="font-size:13px;">路径A：用 Luma AI / Meshy.ai 拍照自动生成3D模型，无需学Blender；路径B（推荐MVP）：用多角度照片拼成精灵图(Sprite)替代真3D，一天就能上线。</p>
-        </div>
-        <h4 style="margin-top:16px;">业务痛点</h4>
-        <ul>
-          <li>线上无法试戴，用户购买决策困难</li>
-          <li>实物到手后效果与预期不符，退货率高</li>
-          <li>直播场景缺少直观的佩戴展示手段</li>
-          <li>线下门店样品种类有限，用户体验受限</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>核心指标</h4>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>追踪精度</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:95%;background:linear-gradient(90deg,#64A0FF,#A078FF);"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">MediaPipe手部关键点误差 ≤ 2mm</span>
-        </div>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>建模门槛</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:25%;background:linear-gradient(90deg,#64A0FF,#50C88C);"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">拍照→3D AI生成，零建模基础</span>
-        </div>
-        <div class="info-box">
-          <strong>线上转化率</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:67%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">有试戴功能的店铺平均提升 30%+</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid-3" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-brain" style="color:#64A0FF;margin-right:6px;"></i>核心功能</h4>
-        <ol>
-          <li><strong>摄像头视频采集</strong> — WebRTC实时流，支持手机/电脑摄像头</li>
-          <li><strong>手部关键点追踪</strong> — MediaPipe Hands（开源免费），实时21个关键点</li>
-          <li><strong>多模式试戴渲染</strong> — 支持精灵图模式(MVP) / 真3D模式</li>
-          <li><strong>宝石模型切换</strong> — 快速切换不同材质/颜色的款式</li>
-          <li><strong>截屏/录屏分享</strong> — 一键保存试戴效果分享给朋友或朋友圈</li>
-          <li><strong>AI推荐搭配</strong> — 根据肤色、手型推荐匹配宝石</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-cogs" style="color:#64A0FF;margin-right:6px;"></i>快速建模方案</h4>
-        <div class="table-wrap" style="margin-top:0;">
-          <table>
-            <thead><tr><th>方案</th><th>方式</th><th>成本</th><th>工期</th></tr></thead>
-            <tbody>
-              <tr>
-                <td><span class="tag tag-green">MVP优先</span></td>
-                <td>多角度拍照→精灵图Sprite<br/><span style="font-size:12px;color:var(--text-muted);">1080P照片6~8张/款</span></td>
-                <td>¥0</td>
-                <td>1天</td>
-              </tr>
-              <tr>
-                <td><span class="tag tag-gold">推荐</span></td>
-                <td>Luma AI / Meshy.ai 拍照生成<br/><span style="font-size:12px;color:var(--text-muted);">手机环绕60秒→glTF模型</span></td>
-                <td>¥0~300/月</td>
-                <td>5min/款</td>
-              </tr>
-              <tr>
-                <td>品质</td>
-                <td>外包建模<br/><span style="font-size:12px;color:var(--text-muted);">猪八戒/淘宝搜"珠宝3D建模"</span></td>
-                <td>¥200~800/款</td>
-                <td>1~7天/批</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="font-size:13px;color:var(--gold);margin-top:12px;">
-          <i class="fas fa-lightbulb"></i> 建议：先用精灵图模式验证市场，再逐步升级到真3D。两天内可上线MVP。
-        </p>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-user-tie" style="color:#64A0FF;margin-right:6px;"></i>典型场景</h4>
-        <div class="info-box" style="margin-bottom:8px;">
-          <strong>消费者张女士</strong>
-          <p style="font-size:13px;">在珠宝电商小程序中打开摄像头，选择一款翡翠手串，手机屏幕实时显示佩戴效果。旋转手腕从各个角度查看，满意后一键加入购物车。</p>
-        </div>
-        <div class="info-box">
-          <strong>主播小陈</strong>
-          <p style="font-size:13px;">直播中打开AR试戴功能，粉丝实时看到不同宝石戴在主播手上的效果，无需频繁更换实物样品。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== PANEL 3 ==================== -->
-  <div class="module-panel" id="req3">
-    <div class="grid-2-1">
-      <div class="card">
-        <h3><i class="fas fa-shopping-cart" style="color:#FFA032;margin-right:8px;"></i>系统概述</h3>
-        <p style="margin-bottom:12px;">
-          宝石交易的核心渠道已全面转向线上。本系统聚焦<strong>电商平台（淘宝/抖音/京东/小红书/拼多多）</strong>的库存管理，以<strong>大促日历驱动、销量脉冲预测、多平台库存同步</strong>为三大支柱，帮助商家在618、双11、年货节等大促节点精准备货、避免超卖/断货。线下门店协同仅保留查询层面的极简功能。
-        </p>
-        <div class="info-box" style="margin-top:12px;">
-          <strong>设计原则</strong>
-          <p style="font-size:13px;">线上为王：所有核心逻辑围绕电商渠道展开；大促为王：以促销日历作为核心时间轴驱动预测与备货；轻线下：仅保留门店库存查询，取消RFID硬件和多店调拨等线下重投入模块。</p>
-        </div>
-        <h4 style="margin-top:16px;">业务痛点</h4>
-        <ul>
-          <li>多平台SKU割裂：淘宝/抖音/小红书各一套库存，超卖频发</li>
-          <li>大促备货靠拍脑袋：618/双11应该备多少货凭感觉，不是缺货就是积压</li>
-          <li>历史数据不利用：每年大促数据沉淀后无人分析，无法指导次年策略</li>
-          <li>活动库存人工管理：大促期间多层活动价叠加，库存预占全靠Excel</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>核心指标</h4>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>多平台库存准确率</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:95%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">目标：实时准确率 ≥ 99.5%</span>
-        </div>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>大促销量预测误差</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:80%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">目标：误差 &lt; 15%（vs 人工估算 &gt; 40%）</span>
-        </div>
-        <div class="info-box">
-          <strong>库存周转天数</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:70%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">目标：压缩 20~30%</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-brain" style="color:#FFA032;margin-right:6px;"></i>核心功能</h4>
-        <ol>
-          <li><strong>多平台OMS接入</strong> — 对接淘宝/抖音/京东/小红书/拼多多API，实现商品与库存实时同步</li>
-          <li><strong>大促日历引擎</strong> — 内置618/双11/年货节/情人节/七夕等珠宝大促日历，支持自定义活动</li>
-          <li><strong>销量脉冲预测</strong> — 基于平销期基线 + 历史大促同期数据 + 流量波动特征预测未来销量</li>
-          <li><strong>活动库存预占</strong> — 按活动方案（满减/满赠/秒杀）预占库存，自动计算各渠道安全库存</li>
-          <li><strong>智能补货建议</strong> — 结合大促销量预测+当前库存+采购周期，自动生成备货建议单</li>
-          <li><strong>大促复盘分析</strong> — 活动结束后自动生成复盘报告：销量/库存周转/缺货损失/利润分析</li>
-          <li><strong>轻量门店查询</strong> — 仅保留库存可视化查询，供门店调货参考（取消RFID和全链路线下管理）</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-cogs" style="color:#FFA032;margin-right:6px;"></i>预测模型设计</h4>
-        <div style="margin-bottom:16px;">
-          <strong style="font-size:14px;">销量预测 = 平销基线 × 大促脉冲系数 × 渠道权重 × 季节性因子</strong>
-        </div>
-        <div class="table-wrap" style="margin-top:12px;">
-          <table>
-            <thead><tr><th>因子</th><th>数据来源</th><th>说明</th></tr></thead>
-            <tbody>
-              <tr><td>平销基线</td><td>过去90天日均销量(去除大促日)</td><td>反映商品自然流量下的日销水平</td></tr>
-              <tr><td>大促脉冲系数</td><td>同类商品去年大促倍率</td><td>如618日均销量=平销期×3.5倍</td></tr>
-              <tr><td>渠道权重</td><td>各平台历史销售额占比</td><td>如抖音占45%、淘宝占30%</td></tr>
-              <tr><td>季节性因子</td><td>珠宝行业季节性规律</td><td>春节/情人节/婚庆季呈明显峰值</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="font-size:13px;color:var(--text-secondary);margin-top:12px;">
-          <strong>模型选型</strong>：Prophet（Facebook开源）适合有季节性的时序预测，一行代码出结果；后期可升级为LSTM。两种方案均无需深度学习背景。
-        </p>
-      </div>
-    </div>
-
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-calendar-alt" style="color:#FFA032;margin-right:6px;"></i>大促预测场景示例：618大促</h4>
-        <div class="table-wrap" style="margin-top:12px;">
-          <table>
-            <thead><tr><th>阶段</th><th>系统动作</th><th>时间节点</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tag tag-orange">备货期</span></td><td>基于去年618数据+今年流量预测，计算各SKU备货量建议</td><td>5月10日~6月1日</td></tr>
-              <tr><td><span class="tag tag-orange">预售期</span></td><td>预售订单实时消耗库存预占，监控各渠道库存水位</td><td>5月24日~6月3日</td></tr>
-              <tr><td><span class="tag tag-orange">爆发期</span></td><td>实时库存预警，销量脉冲超预期时自动触发紧急补货</td><td>6月3日~6月18日</td></tr>
-              <tr><td><span class="tag tag-orange">尾货期</span></td><td>识别需清仓的滞销SKU，自动生成降价/捆绑建议</td><td>6月19日~6月30日</td></tr>
-              <tr><td><span class="tag tag-orange">复盘期</span></td><td>自动生成618复盘报告，预测偏差分析，沉淀到数据库</td><td>7月1日~7月7日</td></tr>
-            </tbody>
+        <div class="card">
+          <h4>💰 最小成本</h4>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0</div>
+            <div style="font-size:13px;color:var(--text-secondary);">仅使用免费API + 本地已有算力</div>
+          </div>
+          <table style="width:100%;font-size:13px;">
+            <tr><td>OpenClaw部署</td><td>¥0（Docker自托管）</td></tr>
+            <tr><td>LLM费用</td><td>¥0（GLM-4-Flash免费额度）</td></tr>
+            <tr><td>Skills</td><td>¥0（ClawHub开源+自定义）</td></tr>
+            <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~5天</strong></td></tr>
           </table>
         </div>
       </div>
-      <div class="card">
-        <h4><i class="fas fa-user-tie" style="color:#FFA032;margin-right:6px;"></i>典型场景</h4>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>运营总监周姐（618大促前）</strong>
-          <p style="font-size:13px;">打开系统看到"2026年618大促备货建议"：去年爆款A手串预计销量800件，当前库存450件，建议补货400件；新款B手串无历史数据，建议按同类均值的70%试水备货120件。周姐一键生成采购清单。</p>
-        </div>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>电商运营小刘（双11爆发期）</strong>
-          <p style="font-size:13px;">手机收到预警通知："抖音渠道碧玺手串库存仅剩5件，当前每小时销量12件，预计45分钟后售罄，建议立即跨渠道调货或挂预售链接。"</p>
-        </div>
-        <div class="info-box">
-          <strong>老板叶总（大促后复盘）</strong>
-          <p style="font-size:13px;">系统自动生成"618大促复盘报告"：总销售额同比+32%、缺货损失¥4.2万、库存周转天数从45天降至33天、滞销SKU识别6款建议清仓。</p>
-        </div>
-      </div>
     </div>
 
-    <div class="card" style="margin-top:24px;">
-      <h4><i class="fas fa-code" style="color:#FFA032;margin-right:8px;"></i>各平台API对接清单</h4>
-      <div class="table-wrap" style="margin-top:12px;">
-        <table>
-          <thead><tr><th>平台</th><th>对接方式</th><th>能力范围</th><th>对接周期</th></tr></thead>
-          <tbody>
-            <tr><td>淘宝/天猫</td><td>千牛开放平台 API</td><td>商品/库存/订单/物流/售后</td><td>2~3周</td></tr>
-            <tr><td>抖音电商</td><td>抖店开放平台 API</td><td>商品/库存/订单/达人带货分析</td><td>2~3周</td></tr>
-            <tr><td>京东</td><td>京东开放平台 API</td><td>商品/库存/订单/促销管理</td><td>1~2周</td></tr>
-            <tr><td>小红书</td><td>小红书开放平台 API</td><td>商品/库存/订单</td><td>1~2周</td></tr>
-            <tr><td>拼多多</td><td>拼多多开放平台 API</td><td>商品/库存/订单</td><td>1~2周</td></tr>
-          </tbody>
-        </table>
+    <div style="margin-top:24px;">
+      <div class="info-box">
+        <strong>与传统方案对比</strong>
+        <p style="margin-top:6px;">传统方案需要「算法工程师 + GPU + 标注数据 + 模型训练」约15~30天/5~10万元 → OpenClaw方案只需「业务人员 + 已有电脑 + 零API费」约3~5天/0元。核心差异：<strong>用LLM的语言理解能力替代了深度学习模型训练</strong>，LLM天然理解谱图中的峰形、基线趋势等语义特征。</p>
       </div>
     </div>
   </div>
 
-  <!-- ==================== PANEL 4 ==================== -->
-  <div class="module-panel" id="req4">
-    <div class="grid-2-1">
-      <div class="card">
-        <h3><i class="fas fa-robot" style="color:#A078FF;margin-right:8px;"></i>系统概述</h3>
-        <p style="margin-bottom:12px;">珠宝行业存在大量微信群/企微群交易场景，群内时常有人发布货源信息（如"出一批翡翠手镯，A货冰种，50只，打包价15万"），但群消息量大，商机容易被淹没。本系统7x24小时监控指定群聊，自动识别货物信息、主动私聊展开话术沟通、判断成单倾向后通知用户接入。</p>
-        <h4 style="margin-top:16px;">业务痛点</h4>
-        <ul>
-          <li>群消息淹没商机：日均500+条群消息，人工筛选效率极低</li>
-          <li>响应不及时：货源信息发出后10分钟是黄金沟通期，人工难以保证</li>
-          <li>跟单话术不统一：不同销售跟进效果差异大</li>
-          <li>人力成本高：全职群运营需2~3人</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>核心指标</h4>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>商机识别率</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:93%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">目标 ≥ 93%</span>
-        </div>
-        <div class="info-box" style="margin-bottom:12px;">
-          <strong>响应速度</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:98%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">目标 ≤ 5秒（vs 人工 5~30分钟）</span>
-        </div>
-        <div class="info-box">
-          <strong>成单转化</strong>
-          <div class="progress-bar"><div class="progress-fill" style="width:70%;"></div></div>
-          <span style="font-size:13px;color:var(--text-secondary);">比纯人工提升 2~3 倍</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:24px;">
-      <h4 style="margin-bottom:16px;"><i class="fas fa-project-diagram" style="color:#A078FF;margin-right:8px;"></i>业务流程</h4>
-      <div class="flow">
-        <div class="flow-step"><div class="step-icon">📱</div><div class="step-label">群消息监控</div><div class="step-desc">7x24 监控指定群聊</div></div>
-        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-        <div class="flow-step"><div class="step-icon">🧠</div><div class="step-label">NLP 识别</div><div class="step-desc">识别货物/数量/价格</div></div>
-        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-        <div class="flow-step"><div class="step-icon">💬</div><div class="step-label">自动私聊</div><div class="step-desc">标准化话术+多轮对话</div></div>
-        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-        <div class="flow-step"><div class="step-icon">📊</div><div class="step-label">倾向判断</div><div class="step-desc">高中低三档评分</div></div>
-        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-        <div class="flow-step"><div class="step-icon">🔔</div><div class="step-label">通知接入</div><div class="step-desc">高倾向即时推送</div></div>
-      </div>
-    </div>
-
-    <div class="grid-3" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-brain" style="color:#A078FF;margin-right:6px;"></i>核心功能</h4>
-        <ol>
-          <li><strong>群消息监听</strong> — 对接企微API/WxBot，7x24监听指定群聊</li>
-          <li><strong>NLP货物识别</strong> — 识别货物类目（翡翠/和田玉/彩宝等）、数量、等级、价格</li>
-          <li><strong>自动私聊对接</strong> — 货源发布后3秒内自动发起私聊</li>
-          <li><strong>交易话术引擎</strong> — 5阶段多轮对话（触达→询价→看货→议价→成交）</li>
-          <li><strong>成单倾向评分</strong> — 基于回复速度/议价深度/看货意愿等特征打分</li>
-          <li><strong>用户介入通知</strong> — 倾向≥80分即时推送+聊天摘要</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-cogs" style="color:#A078FF;margin-right:6px;"></i>技术架构</h4>
-        <ul>
-          <li><strong>消息接入</strong>：企业微信API / 微信个人号协议</li>
-          <li><strong>NLP引擎</strong>：大模型API（豆包/DeepSeek）进行实体抽取，无需自训模型</li>
-          <li><strong>话术引擎</strong>：基于状态机的多轮对话管理框架</li>
-          <li><strong>倾向判断</strong>：规则引擎+简单分类模型双保险</li>
-          <li><strong>数据库</strong>：PostgreSQL（商机/话术/用户Profile）</li>
-          <li><strong>通知</strong>：企微应用消息/用户App push</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-user-tie" style="color:#A078FF;margin-right:6px;"></i>典型场景</h4>
-        <div class="info-box" style="margin-bottom:8px;">
-          <strong>采购总监刘总</strong>
-          <p style="font-size:13px;">某供应商在"华东珠宝交流群"发出"出一批阳绿翡翠手镯，冰种，35只，打包18万"。机器人3秒内识别并私聊，经过5轮话术判断成单倾向85分，推送刘总。刘总打开聊天摘要后直接约看货。</p>
-        </div>
-        <div class="info-box">
-          <strong>销售总监陈姐</strong>
-          <p style="font-size:13px;">在后台查看当日商机看板：已捕获12条商机，跟进8条，高倾向3条已推送，中倾向5条机器人继续跟单。</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:24px;">
-      <h4><i class="fas fa-comments" style="color:#A078FF;margin-right:8px;"></i>话术引擎五阶段设计</h4>
-      <div class="table-wrap" style="margin-top:12px;">
-        <table>
-          <thead><tr><th style="width:70px;">阶段</th><th>机器人动作</th><th>示例话术</th><th>倾向信号</th></tr></thead>
-          <tbody>
-            <tr><td><span class="tag tag-purple">S1 触达</span></td><td>识别货源后3秒内私聊</td><td>"老板好，看到您在XX群发的[商品]，我这边长期收这类货，方便私聊看看细节吗？"</td><td>回复时间 < 30min</td></tr>
-            <tr><td><span class="tag tag-purple">S2 询价</span></td><td>引导对方报价、发图</td><td>"方便发几张实物图看看吗？主要在哪个渠道走？打包和单拿各什么政策？"</td><td>愿意发图/提供细节</td></tr>
-            <tr><td><span class="tag tag-purple">S3 看货</span></td><td>核对参数、约看货方式</td><td>"品质不错，您这批货目前有其他人看吗？支持邮寄看货还是到店看？"</td><td>愿意约看货</td></tr>
-            <tr><td><span class="tag tag-purple">S4 议价</span></td><td>试探价格空间</td><td>"如果批量走，价格上还能让几个点？我这边量大长期合作。"</td><td>给出让步/表达合作意愿</td></tr>
-            <tr><td><span class="tag tag-purple">S5 成交</span></td><td>确认交易、通知用户</td><td>"好的，价格和细节我记录下来，让我这边负责人直接跟您对接。"</td><td>同意对接</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="info-box" style="margin-top:16px;">
-        <strong>倾向评分模型特征：</strong> 回复速度(15%)、话术阶段深度(20%)、对方主动信息量(20%)、议价意愿(15%)、看货意愿(15%)、历史交易记录(15%)。≥80分推送，60~79继续跟，<60标记低意向。
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================ -->
-<!-- 可行性分析 -->
-<!-- ================================================================ -->
-<section class="section" id="feasibility">
-  <div class="section-header">
-    <div class="section-tag"><i class="fas fa-chart-line"></i> 第二部分</div>
-    <h2 class="section-title">可行性分析报告</h2>
-    <p class="section-desc">从技术可行性、团队能力、市场竞争、合规性四维评估四大系统落地的可行性与风险。</p>
-  </div>
-
-  <div class="module-tabs" id="feaTabs">
-    <button class="module-tab active" data-panel="fea1">一：光谱AI质检</button>
-    <button class="module-tab" data-panel="fea2">二：VR宝石穿戴</button>
-    <button class="module-tab" data-panel="fea3">三：线上渠道智能库存</button>
-    <button class="module-tab" data-panel="fea4">四：群聊交易机器人</button>
-  </div>
-
-  <!-- Fea Panel 1 -->
-  <div class="module-panel active" id="fea1">
+  <!-- ==== 系统二：VR宝石穿戴 ==== -->
+  <div class="module-panel" id="sys2">
     <div class="grid-2">
-      <div class="card">
-        <h4><i class="fas fa-microchip" style="color:var(--gold);margin-right:6px;"></i>技术可行性</h4>
-        <p style="margin-bottom:12px;">光谱分析在信号处理层面已有成熟的开源工具链，无需深度学习即可完成核心功能：</p>
-        <ul>
-          <li>SciPy.signal 的 find_peaks_cwt 可稳定进行谱峰识别</li>
-          <li>PeakUtils 专为谱图分析设计，一行代码算峰高/面积/半高宽</li>
-          <li>标准谱图库有公开数据可整理（GIA、中国地质大学）</li>
-          <li>Phase 2 的 SVM 分类器用 scikit-learn 即可实现</li>
-          <li>Phase 3 深度学习可外包给中科谱光等专业公司</li>
-        </ul>
-        <div class="risk-matrix" style="margin-top:12px;">
-          <div class="risk-cell risk-low">技术风险：低</div>
-          <div class="risk-cell risk-low">学习门槛：低</div>
-          <div class="risk-cell risk-mid">数据标注量：中</div>
-        </div>
+      <div class="card card-glow">
+        <div class="card-icon blue-bg"><i class="fas fa-cube"></i></div>
+        <h3>需求概述</h3>
+        <p>客户希望看到宝石手串/项链戴在手上的实际效果，传统方式靠PS或想象。需要实现"上传手部照片 → 自动匹配宝石款式 → 叠加显示穿戴效果"。</p>
+        <p style="margin-top:8px;"><strong>MVP目标：</strong>用户上传一张手部照片和一款宝石照片 → 输出合成穿戴效果图。</p>
       </div>
-      <div class="card">
-        <h4><i class="fas fa-users-cog" style="color:var(--gold);margin-right:6px;"></i>团队能力可行性</h4>
-        <p style="margin-bottom:12px;">团队需具备：</p>
+      <div class="card card-glow">
+        <div class="card-icon blue-bg"><i class="fas fa-cogs"></i></div>
+        <h3>OpenClaw技术方案</h3>
+        <p><strong>传统方案</strong>：Three.js 3D渲染 + MediaPipe手部追踪 + PBR材质 → 前端开发团队2~3人，开发周期1~2月</p>
+        <p><strong>OpenClaw方案</strong>：</p>
         <ul>
-          <li><strong>Phase 1 必需</strong>：Python基础（能调用SciPy/NumPy）</li>
-          <li><strong>Phase 2 需要</strong>：基础机器学习概念（了解SVM/RF即可）</li>
-          <li><strong>Phase 3 可选</strong>：可外包给专业AI公司</li>
-          <li>缺乏光谱领域知识时，可购买公开标准谱库+咨询珠宝质检机构</li>
+          <li>方案A（最简）：OpenClaw 调用 <strong>图像处理Skill</strong> + LLM 生成 Python/PIL脚本，自动将宝石图叠加到手部照片</li>
+          <li>方案B（进阶）：OpenClaw 调用 <strong>AI绘图API Skill</strong>（如FLUX/通义万相），输入"宝石手串穿戴效果"提示词直接生成</li>
+          <li>两种方案均<strong>无需任何3D建模</strong></li>
         </ul>
-        <div class="info-box" style="margin-top:12px;">
-          <strong>学习资源</strong>
-          <p style="font-size:13px;">"Python光谱数据分析"教程（B站/慕课网免费）约 2 周可上手。PeakUtils 官方文档 30 分钟可跑通 Demo。</p>
-        </div>
       </div>
     </div>
-    <div class="grid-2" style="margin-top:24px;">
+
+    <div style="margin-top:24px;">
       <div class="card">
-        <h4><i class="fas fa-balance-scale" style="color:var(--gold);margin-right:6px;"></i>市场与合规可行性</h4>
-        <ul>
-          <li>专注珠宝玉石垂直赛道的光谱AI产品较少，存在市场空白</li>
-          <li>目标客户：珠宝质检机构约2000+家，大型珠宝企业</li>
-          <li>合规要点：质检系统需通过CMA/CNAS认证，GB/T 16552国标纳入模型</li>
-          <li>知识产权风险：确保谱图数据来源合法</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-check-circle" style="color:var(--gold);margin-right:6px;"></i>综合评分</h4>
-        <div style="display:flex;align-items:center;gap:24px;margin-bottom:16px;">
-          <div class="score-ring" style="--pct:82%;"><span>4.1</span></div>
+        <h4>📦 Skill清单 & LLM选型</h4>
+        <div class="grid-2" style="margin-top:12px;">
           <div>
-            <div style="font-size:20px;font-weight:700;">4.1 / 5.0</div>
-            <div style="color:var(--text-secondary);font-size:13px;">基本可行，分阶段执行</div>
+            <table style="width:100%;font-size:13px;">
+              <thead><tr><th>Skill</th><th>来源</th><th>作用</th></tr></thead>
+              <tbody>
+                <tr><td>image-processor</td><td><span class="tag tag-green">ClawHub社区</span></td><td>图片叠加合成/PIL操作</td></tr>
+                <tr><td>ai-draw</td><td><span class="tag tag-green">ClawHub社区</span></td><td>调用AI绘图API生成效果图</td></tr>
+                <tr><td>pic-tryon</td><td><span class="tag tag-gold">自定义Skill</span></td><td>调用MCP Server连接AR SDK</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="llm-tier">
+              <span class="llm-badge llm-free">🆓 Qwen-Turbo (免费)</span>
+              <span class="llm-badge llm-api">🔌 DeepSeek-V3 (廉价API)</span>
+            </div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
+              <strong>方案A（叠加合成）：</strong> Qwen-Turbo 免费 → 生成PIL叠加脚本 → 秒级出图<br/>
+              <strong>方案B（AI生成）：</strong> 调用FLUX API（约¥0.1/张）→ 效果更真实<br/>
+              <strong>推荐：先A后B</strong>，A跑通验证需求后升级B
+            </p>
           </div>
         </div>
-        <table style="width:100%;border:none;font-size:13px;">
-          <tr><td>技术可行性</td><td>4.5</td><td style="color:#50C88C;">★★★★★</td></tr>
-          <tr><td>团队能力</td><td>3.5</td><td>★★★☆☆</td></tr>
-          <tr><td>市场竞争力</td><td>4.0</td><td style="color:var(--gold);">★★★★☆</td></tr>
-          <tr><td>合规风险</td><td style="border-bottom:none;">4.0</td><td style="border-bottom:none;color:var(--gold);">★★★★☆</td></tr>
-        </table>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="grid-2">
+        <div class="card">
+          <h4>📋 MVP验证指标</h4>
+          <ul>
+            <li><strong>输入</strong>：1张手部照片 + 1张宝石手串照片</li>
+            <li><strong>验证</strong>：输出效果图可清晰看出"手+宝石"的叠加效果</li>
+            <li><strong>通过标准</strong>：端到端跑通，效果图可展示给客户</li>
+            <li><strong>不追求</strong>：3D旋转、真实光影、物理碰撞</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>💰 最小成本</h4>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0~5</div>
+            <div style="font-size:13px;color:var(--text-secondary);">方案A免费，方案B每次约0.1元</div>
+          </div>
+          <table style="width:100%;font-size:13px;">
+            <tr><td>OpenClaw部署</td><td>¥0</td></tr>
+            <tr><td>LLM/API费用</td><td>¥0~5</td></tr>
+            <tr><td>Skills</td><td>¥0</td></tr>
+            <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~5天</strong></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="info-box">
+        <strong>与传统方案对比</strong>
+        <p style="margin-top:6px;">传统方案需要「3D建模师 + Three.js前端工程师 + MediaPipe算法」约30~60天/5~20万元 → OpenClaw方案只需「会传图片的人 + LLM一句话生成代码」约3~5天/0~5元。<strong>核心差异：用AI图像生成和LLM代码生成替代了3D渲染管线</strong>，MVP阶段完全不碰3D。</p>
       </div>
     </div>
   </div>
 
-  <!-- Fea Panel 2 -->
-  <div class="module-panel" id="fea2">
+  <!-- ==== 系统三：线上渠道库存 ==== -->
+  <div class="module-panel" id="sys3">
     <div class="grid-2">
-      <div class="card">
-        <h4><i class="fas fa-microchip" style="color:#64A0FF;margin-right:6px;"></i>技术可行性</h4>
-        <ul>
-          <li>MediaPipe Hands 提供免费开源手部追踪，精度达亚毫米级</li>
-          <li>Three.js 加载 glTF 模型渲染技术成熟，手机端性能可优化</li>
-          <li>AI 3D生成工具（Luma AI/Meshy.ai）大幅降低建模门槛</li>
-          <li>精灵图方案作为保底，无3D模型也能上线</li>
-        </ul>
-        <div class="risk-matrix" style="margin-top:12px;">
-          <div class="risk-cell risk-low">核心技术：低</div>
-          <div class="risk-cell risk-low">建模门槛：低</div>
-          <div class="risk-cell risk-mid">设备兼容：中</div>
-        </div>
+      <div class="card card-glow">
+        <div class="card-icon orange-bg"><i class="fas fa-chart-bar"></i></div>
+        <h3>需求概述</h3>
+        <p>珠宝在淘宝/抖音/京东/拼多多等多平台销售，库存数据分散、手工同步费时费力。需要自动采集各平台销量、预测大促需求、预警库存不足。</p>
+        <p style="margin-top:8px;"><strong>MVP目标：</strong>自动拉取一个平台（如淘宝）的销量数据 → 用简单的趋势预测输出补货建议。</p>
       </div>
-      <div class="card">
-        <h4><i class="fas fa-users-cog" style="color:#64A0FF;margin-right:6px;"></i>团队能力可行性</h4>
+      <div class="card card-glow">
+        <div class="card-icon orange-bg"><i class="fas fa-cogs"></i></div>
+        <h3>OpenClaw技术方案</h3>
+        <p><strong>传统方案</strong>：自研OMS系统 + 多平台API对接 + Prophet/LSTM预测模型 → 全栈团队开发2个月</p>
+        <p><strong>OpenClaw方案</strong>：</p>
         <ul>
-          <li><strong>前端工程师</strong>（必配）：Three.js + MediaPipe 集成</li>
-          <li><strong>3D建模</strong>：AI工具生成或外包，无需团队自备</li>
-          <li><strong>CV算法</strong>：MediaPipe 开箱即用，无需自研</li>
-          <li>前端技术栈（React/Vue + Three.js）在Web开发中已很普及</li>
+          <li>安装 ClawHub 的 <strong>电商采集Skill</strong>（32个国内电商Skills，一键安装）</li>
+          <li>OpenClaw 定时触发采集任务，数据落地到本地CSV/DB</li>
+          <li>自定义 <strong>inventory-forecast Skill</strong>：写简单移动平均/线性回归进行趋势预测（<strong>不用Prophet</strong>，LLM自己就能算出趋势）</li>
+          <li>LLM 读取历史数据直接给出"建议补货量"</li>
         </ul>
-        <div class="info-box" style="margin-top:12px;">
-          <strong>快速上手</strong>
-          <p style="font-size:13px;">MediaPipe Hands 官方Demo 2小时可跑通。Three.js 官方的手部交互示例可直接参考修改。</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <h4>📦 Skill清单 & LLM选型</h4>
+        <div class="grid-2" style="margin-top:12px;">
+          <div>
+            <table style="width:100%;font-size:13px;">
+              <thead><tr><th>Skill</th><th>来源</th><th>作用</th></tr></thead>
+              <tbody>
+                <tr><td>taobao-collector</td><td><span class="tag tag-cyan">ClawHub电商</span></td><td>淘宝店铺销量/库存数据采集</td></tr>
+                <tr><td>data-cleaner</td><td><span class="tag tag-green">ClawHub官方</span></td><td>数据清洗去重格式化</td></tr>
+                <tr><td>inventory-forecast</td><td><span class="tag tag-gold">自定义Skill</span></td><td>简单时序预测+补货建议</td></tr>
+                <tr><td>csv-writer</td><td><span class="tag tag-green">ClawHub官方</span></td><td>数据持久化到本地文件</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="llm-tier">
+              <span class="llm-badge llm-free">🆓 GLM-4-Flash (免费)</span>
+              <span class="llm-badge llm-api">🔌 DeepSeek-V3 (¥0.005/千tokens)</span>
+            </div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
+              <strong>日常分析用免费模型</strong> → 读取销量表格 → 输出趋势判断<br/>
+              <strong>大促预测用DeepSeek-V3</strong> → 结合历史大促数据 + 今年活动日历 → 输出备货建议<br/>
+              月均token消耗预估：¥0~3元
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-balance-scale" style="color:#64A0FF;margin-right:6px;"></i>市场与合规可行性</h4>
-        <ul>
-          <li>珠宝AR试戴正处快速渗透期，竞品Perfect Corp年费高(¥50~100万+)</li>
-          <li>自主开发成本可控，适合长期深度定制</li>
-          <li>合规：摄像头权限符合个保法，3D模型版权需保护</li>
-          <li>微信小程序AR需使用小程序原生AR组件</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-check-circle" style="color:#64A0FF;margin-right:6px;"></i>综合评分</h4>
-        <div style="display:flex;align-items:center;gap:24px;margin-bottom:16px;">
-          <div class="score-ring" style="--pct:80%;"><span>4.0</span></div>
-          <div>
-            <div style="font-size:20px;font-weight:700;">4.0 / 5.0</div>
-            <div style="color:var(--text-secondary);font-size:13px;">基本可行，精灵图方案兜底</div>
-          </div>
+
+    <div style="margin-top:24px;">
+      <div class="grid-2">
+        <div class="card">
+          <h4>📋 MVP验证指标</h4>
+          <ul>
+            <li><strong>输入</strong>：淘宝某商品近30天销量数据（真实或模拟）</li>
+            <li><strong>验证</strong>：输出"建议补货量 + 趋势判断"，与人工判断大致一致</li>
+            <li><strong>通过标准</strong>：数据采集链路跑通 + LLM输出有业务参考价值的建议</li>
+            <li><strong>不追求</strong>：多平台同步、实时更新、高精度预测</li>
+          </ul>
         </div>
-        <table style="width:100%;border:none;font-size:13px;">
-          <tr><td>技术可行性</td><td>4.0</td><td style="color:var(--gold);">★★★★☆</td></tr>
-          <tr><td>团队能力</td><td>3.5</td><td>★★★☆☆</td></tr>
-          <tr><td>市场竞争力</td><td>4.5</td><td style="color:#50C88C;">★★★★★</td></tr>
-          <tr><td>合规风险</td><td style="border-bottom:none;">4.0</td><td style="border-bottom:none;color:var(--gold);">★★★★☆</td></tr>
-        </table>
+        <div class="card">
+          <h4>💰 最小成本</h4>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0~3/月</div>
+            <div style="font-size:13px;color:var(--text-secondary);">纯API费，淘宝采集无需爬虫</div>
+          </div>
+          <table style="width:100%;font-size:13px;">
+            <tr><td>OpenClaw部署</td><td>¥0</td></tr>
+            <tr><td>电商采集Skill</td><td>¥0（ClawHub开源）</td></tr>
+            <tr><td>LLM费用</td><td>约¥0~3/月</td></tr>
+            <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~7天</strong></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="info-box">
+        <strong>与传统方案对比</strong>
+        <p style="margin-top:6px;">传统方案需要「全栈工程师 + OMS系统开发 + 算法工程师做Prophet/LSTM」约30~60天/10~30万元 → OpenClaw方案只需「安装现成Skill + LLM自动分析」约3~7天/0~3元。<strong>核心差异：ClawHub现成的32个电商Skill替代了自研OMS对接，LLM的分析能力替代了时序预测模型。</strong></p>
       </div>
     </div>
   </div>
 
-  <!-- Fea Panel 3 -->
-  <div class="module-panel" id="fea3">
+  <!-- ==== 系统四：群聊交易机器人 ==== -->
+  <div class="module-panel" id="sys4">
     <div class="grid-2">
-      <div class="card">
-        <h4><i class="fas fa-microchip" style="color:#FFA032;margin-right:6px;"></i>技术可行性</h4>
-        <ul>
-          <li>主流电商平台均提供成熟的开放平台API，对接技术标准化</li>
-          <li>Prophet（Facebook开源）可直接用于销量时序预测，一行代码出结果</li>
-          <li>Node.js/Python 都有成熟的 OMS 开源参考实现</li>
-          <li>LSTM 复杂性可选；Prophet 在电商大促预测场景中已广泛验证</li>
-          <li>取消了RFID硬件依赖，技术栈全在软件层，复杂度大幅降低</li>
-        </ul>
-        <div class="risk-matrix" style="margin-top:12px;">
-          <div class="risk-cell risk-low">平台API：低</div>
-          <div class="risk-cell risk-low">预测模型：低</div>
-          <div class="risk-cell risk-low">系统集成：低</div>
-        </div>
+      <div class="card card-glow">
+        <div class="card-icon purple-bg"><i class="fas fa-robot"></i></div>
+        <h3>需求概述</h3>
+        <p>珠宝交易群里有人发布货物信息（品种/数量/价格），需要机器人自动识别、私聊跟进、判断成单倾向，高倾向时通知用户接入。</p>
+        <p style="margin-top:8px;"><strong>MVP目标：</strong>监听一个企微群 → 识别群消息中的货物信息 → 自动私聊发话术 → 标记高/低意向。</p>
       </div>
-      <div class="card">
-        <h4><i class="fas fa-users-cog" style="color:#FFA032;margin-right:6px;"></i>团队能力可行性</h4>
+      <div class="card card-glow">
+        <div class="card-icon purple-bg"><i class="fas fa-cogs"></i></div>
+        <h3>OpenClaw技术方案</h3>
+        <p><strong>传统方案</strong>：自研企微API对接 + NLP模型训练 + 状态机话术引擎 + 意图分类模型 → 后端团队开发1~2月</p>
+        <p><strong>OpenClaw方案</strong>：</p>
         <ul>
-          <li><strong>全栈工程师</strong>（必配）：负责前后端+API对接</li>
-          <li><strong>数据分析师</strong>（建议配）：Prophet/时序预测配置与调参</li>
-          <li>各平台API有完善的开发者文档，按指南对接即可</li>
-          <li>珠宝行业经验不是必须，电商库存逻辑是通用能力</li>
+          <li>安装 ClawHub 的 <strong>企微对接Skill</strong>（社区已有现成方案）</li>
+          <li>自定义 <strong>trade-bot Skill</strong>：群消息监听 + 实体抽取 + 话术状态机</li>
+          <li>LLM 负责：① 识别消息中的货物信息（品种/数量/价格）② 判断成单倾向（高/中/低）③ 生成回复话术</li>
+          <li><strong>完全不需要训练任何模型</strong>，全部靠LLM的指令遵循能力</li>
         </ul>
-        <div class="info-box" style="margin-top:12px;">
-          <strong>预测模型快速上手</strong>
-          <p style="font-size:13px;">Prophet 官方 Quick Start 30 分钟可跑通，输入日期和销量两列数据即可自动输出预测。后期升级 LSTM 可找 GitHub 开源代码直接改。</p>
-        </div>
       </div>
     </div>
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-balance-scale" style="color:#FFA032;margin-right:6px;"></i>市场与合规可行性</h4>
-        <ul>
-          <li>珠宝电商SaaS市场已存在竞品（珍宝云/珠宝管家），但AI大促预测是差异化点</li>
-          <li>传统进销存（用友/金蝶）缺少电商渠道深度对接</li>
-          <li>合规：经营数据需符合等保2.0，各平台API需遵守开发者协议</li>
-          <li>库存数据跨平台同步需注意各平台库存接口调用频率限制</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-check-circle" style="color:#FFA032;margin-right:6px;"></i>综合评分</h4>
-        <div style="display:flex;align-items:center;gap:24px;margin-bottom:16px;">
-          <div class="score-ring" style="--pct:90%;"><span>4.5</span></div>
-          <div>
-            <div style="font-size:20px;font-weight:700;">4.5 / 5.0</div>
-            <div style="color:var(--text-secondary);font-size:13px;">高可行性，技术成熟无硬件依赖</div>
-          </div>
-        </div>
-        <table style="width:100%;border:none;font-size:13px;">
-          <tr><td>技术可行性</td><td>5.0</td><td style="color:#50C88C;">★★★★★</td></tr>
-          <tr><td>团队能力</td><td>4.0</td><td style="color:var(--gold);">★★★★☆</td></tr>
-          <tr><td>市场竞争力</td><td>4.5</td><td style="color:#50C88C;">★★★★★</td></tr>
-          <tr><td>合规风险</td><td style="border-bottom:none;">4.5</td><td style="border-bottom:none;color:#50C88C;">★★★★★</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
 
-  <!-- Fea Panel 4 -->
-  <div class="module-panel" id="fea4">
-    <div class="grid-2">
+    <div style="margin-top:24px;">
       <div class="card">
-        <h4><i class="fas fa-microchip" style="color:#A078FF;margin-right:6px;"></i>技术可行性</h4>
-        <ul>
-          <li>企微API提供稳定的群机器人和消息推送能力，合规且无封号风险</li>
-          <li>大模型API（豆包/DeepSeek）可直接做实体抽取，无需自训NLP模型</li>
-          <li>话术引擎基于状态机框架，有成熟开源方案</li>
-          <li>倾向判断用规则引擎+简单分类即可达到实用精度</li>
-          <li><strong>注意</strong>：微信个人号协议存在封号风险，商用场景建议用企微API</li>
-        </ul>
-        <div class="risk-matrix" style="margin-top:12px;">
-          <div class="risk-cell risk-low">NLP技术：低</div>
-          <div class="risk-cell risk-mid">平台合规：中</div>
-          <div class="risk-cell risk-low">话术引擎：低</div>
-        </div>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-users-cog" style="color:#A078FF;margin-right:6px;"></i>团队能力可行性</h4>
-        <ul>
-          <li><strong>后端工程师</strong>（必配）：企微API对接+消息处理</li>
-          <li><strong>大模型API调用</strong>：调用豆包/DeepSeek API进行实体抽取，有HTTP基础即可</li>
-          <li><strong>话术配置</strong>：业务人员可配置话术模板，IT人员实现状态机</li>
-          <li>整个系统核心能力来自API调用，自研工作量集中在对接和流程编排</li>
-        </ul>
-        <div class="info-box" style="margin-top:12px;">
-          <strong>快速上手</strong>
-          <p style="font-size:13px;">企微API官方文档+豆包API文档，一个后端工程师约2周可跑通群消息监听→NLP识别→自动回复的核心链路Demo。</p>
+        <h4>📦 Skill清单 & LLM选型</h4>
+        <div class="grid-2" style="margin-top:12px;">
+          <div>
+            <table style="width:100%;font-size:13px;">
+              <thead><tr><th>Skill</th><th>来源</th><th>作用</th></tr></thead>
+              <tbody>
+                <tr><td>wecom-bot</td><td><span class="tag tag-cyan">ClawHub社区</span></td><td>企微群消息监听+回复</td></tr>
+                <tr><td>entity-extractor</td><td><span class="tag tag-gold">自定义Skill</span></td><td>调用LLM提取货物实体</td></tr>
+                <tr><td>trade-dialogue</td><td><span class="tag tag-gold">自定义Skill</span></td><td>话术状态机+倾向判断</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="llm-tier">
+              <span class="llm-badge llm-free">🆓 GLM-4-Flash (免费)</span>
+              <span class="llm-badge llm-local">💻 Qwen2.5-7B (本地)</span>
+            </div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
+              <strong>实体抽取：</strong> GLM-4-Flash免费模型即可（只需从文本中提取"品种、数量、价格"）<br/>
+              <strong>倾向判断：</strong> 同样的免费模型，设定判断规则（价格低于市场价=高倾向）<br/>
+              <strong>话术生成：</strong> DeepSeek-V3（¥0.005/千tokens）效果更好，但GLM-4-Flash也够用<br/>
+              全链路免费模型可跑通
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h4><i class="fas fa-balance-scale" style="color:#A078FF;margin-right:6px;"></i>市场与合规可行性</h4>
-        <ul>
-          <li>珠宝群聊交易是近年兴起的新场景，目前无成型竞品</li>
-          <li>现有方案主要是人工客服或简单关键词机器人，缺乏智能话术</li>
-          <li>合规要点：企微API合规；注意《个保法》《数据安全法》对聊天数据处理要求</li>
-          <li>微信个人号协议存在被封风险，商用场景建议用企微API</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4><i class="fas fa-check-circle" style="color:#A078FF;margin-right:6px;"></i>综合评分</h4>
-        <div style="display:flex;align-items:center;gap:24px;margin-bottom:16px;">
-          <div class="score-ring" style="--pct:84%;"><span>4.2</span></div>
-          <div>
-            <div style="font-size:20px;font-weight:700;">4.2 / 5.0</div>
-            <div style="color:var(--text-secondary);font-size:13px;">高可行，市场空白</div>
-          </div>
+
+    <div style="margin-top:24px;">
+      <div class="grid-2">
+        <div class="card">
+          <h4>📋 MVP验证指标</h4>
+          <ul>
+            <li><strong>输入</strong>：企微群中发一条测试消息如"出缅甸翡翠手镯一批，200只，800/只"</li>
+            <li><strong>验证</strong>：机器人回复私聊问候话术，并标记成单倾向</li>
+            <li><strong>通过标准</strong>：端到端跑通，实体抽取准确，话术回复自然</li>
+            <li><strong>不追求</strong>：多轮对话、复杂议价、多群并发</li>
+          </ul>
         </div>
-        <table style="width:100%;border:none;font-size:13px;">
-          <tr><td>技术可行性</td><td>4.0</td><td style="color:var(--gold);">★★★★☆</td></tr>
-          <tr><td>团队能力</td><td>4.0</td><td style="color:var(--gold);">★★★★☆</td></tr>
-          <tr><td>市场竞争力</td><td>4.5</td><td style="color:#50C88C;">★★★★★</td></tr>
-          <tr><td>合规风险</td><td style="border-bottom:none;">3.5</td><td>★★★☆☆</td></tr>
-        </table>
+        <div class="card">
+          <h4>💰 最小成本</h4>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+            <div style="font-size:36px;font-weight:800;color:#50C88C;">≈¥0</div>
+            <div style="font-size:13px;color:var(--text-secondary);">企微API免费 + 免费模型</div>
+          </div>
+          <table style="width:100%;font-size:13px;">
+            <tr><td>OpenClaw部署</td><td>¥0</td></tr>
+            <tr><td>企微API</td><td>¥0（企业微信免费）</td></tr>
+            <tr><td>LLM费用</td><td>¥0（GLM-4-Flash免费额度）</td></tr>
+            <tr><td style="border-bottom:none;">MVP周期</td><td style="border-bottom:none;"><strong>3~7天</strong></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="info-box">
+        <strong>与传统方案对比</strong>
+        <p style="margin-top:6px;">传统方案需要「后端工程师 + NLP算法 + 意图分类模型训练 + 话术流程开发」约30~45天/5~15万元 → OpenClaw方案只需「一个懂企微API的后端 + LLM的语义理解能力」约3~7天/0元。<strong>核心差异：LLM的指令遵循能力同时替代了实体抽取、意图分类、话术生成三个传统NLP环节。</strong></p>
       </div>
     </div>
   </div>
@@ -978,8 +674,8 @@
 <!-- ===== 综合对比 ===== -->
 <section class="section">
   <div class="section-header">
-    <h2 class="section-title">四大系统综合对比</h2>
-    <p class="section-desc">从技术可行性、团队门槛、市场空间、合规风险四维度横向比较，辅助决策排序。</p>
+    <h2 class="section-title">四大系统 · MVP综合对比</h2>
+    <p class="section-desc">以 OpenClaw + Skills + LLM 为基准重新评估，核心指标为"MVP成本/周期/技术门槛"</p>
   </div>
   <div class="table-wrap">
     <table>
@@ -988,69 +684,116 @@
           <th>维度</th>
           <th>光谱AI质检</th>
           <th>VR宝石穿戴</th>
-          <th>线上渠道智能库存</th>
+          <th>线上渠道库存</th>
           <th>群聊交易机器人</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>技术成熟度</strong></td>
-          <td style="color:#50C88C;">★★★★★</td>
-          <td style="color:var(--gold);">★★★★☆</td>
-          <td style="color:#50C88C;">★★★★★</td>
-          <td style="color:var(--gold);">★★★★☆</td>
+          <td><strong>MVP核心Skill</strong></td>
+          <td>python-executor<br/>+ spec-analysis(自定义)</td>
+          <td>image-processor<br/>+ ai-draw(可选的)</td>
+          <td>taobao-collector<br/>+ inventory-forecast(自定义)</td>
+          <td>wecom-bot<br/>+ trade-dialogue(自定义)</td>
         </tr>
         <tr>
-          <td><strong>团队能力门槛</strong></td>
-          <td>Python基础</td>
-          <td>前端 + Three.js</td>
-          <td>全栈 + API对接</td>
-          <td>后端 + API对接</td>
+          <td><strong>LLM选型</strong></td>
+          <td><span class="llm-badge llm-free">GLM-4-Flash</span></td>
+          <td><span class="llm-badge llm-free">Qwen-Turbo</span></td>
+          <td><span class="llm-badge llm-free">GLM-4-Flash</span></td>
+          <td><span class="llm-badge llm-free">GLM-4-Flash</span></td>
         </tr>
         <tr>
-          <td><strong>必备团队人数</strong></td>
-          <td>1~2人起步</td>
-          <td>2~3人起步</td>
-          <td>2~3人起步</td>
-          <td>1~2人起步</td>
+          <td><strong>技术门槛</strong></td>
+          <td><span class="tag tag-green">基础Python</span></td>
+          <td><span class="tag tag-green">会传图片即可</span></td>
+          <td><span class="tag tag-green">安装Skill即可</span></td>
+          <td><span class="tag tag-green">配置企微API</span></td>
         </tr>
         <tr>
-          <td><strong>核心外部依赖</strong></td>
-          <td>公开标准谱图库</td>
-          <td>MediaPipe / Luma AI</td>
-          <td>各平台开放API</td>
-          <td>企微API+豆包/DeepSeek</td>
+          <td><strong>团队要求</strong></td>
+          <td>1人（懂Python基础）</td>
+          <td>1人（产品自己测）</td>
+          <td>1~2人（运营+后端兼职）</td>
+          <td>1人（后端兼职）</td>
         </tr>
         <tr>
-          <td><strong>综合风险等级</strong></td>
-          <td><span class="tag tag-gold">低风险</span></td>
-          <td><span class="tag tag-blue">中低风险</span></td>
-          <td><span class="tag tag-green">极低风险</span></td>
-          <td><span class="tag tag-purple">低风险</span></td>
+          <td><strong>MVP成本</strong></td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0</td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0~5</td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0~3/月</td>
+          <td style="color:#50C88C;font-weight:700;">≈¥0</td>
         </tr>
         <tr>
-          <td><strong>综合评分</strong></td>
-          <td><strong>4.1</strong> / 5.0</td>
-          <td><strong>4.0</strong> / 5.0</td>
-          <td><strong>4.5</strong> / 5.0</td>
-          <td><strong>4.2</strong> / 5.0</td>
+          <td><strong>MVP周期</strong></td>
+          <td>3~5天</td>
+          <td>3~5天</td>
+          <td>3~7天</td>
+          <td>3~7天</td>
+        </tr>
+        <tr>
+          <td><strong>传统方案成本</strong></td>
+          <td style="color:#FF5050;">¥5~10万</td>
+          <td style="color:#FF5050;">¥5~20万</td>
+          <td style="color:#FF5050;">¥10~30万</td>
+          <td style="color:#FF5050;">¥5~15万</td>
+        </tr>
+        <tr>
+          <td><strong>成本节省</strong></td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
+          <td style="color:#50C88C;font-weight:700;">99.9%+</td>
         </tr>
         <tr>
           <td><strong>推荐优先级</strong></td>
-          <td style="font-weight:600;">③ 中期启动</td>
+          <td style="font-weight:600;">③ 中期验证</td>
           <td style="font-weight:600;">④ 市场驱动</td>
-          <td style="font-weight:600;">① 先行启动</td>
-          <td style="font-weight:600;">② 并行启动</td>
+          <td style="font-weight:600;">① 先行验证</td>
+          <td style="font-weight:600;">② 并行验证</td>
         </tr>
       </tbody>
     </table>
   </div>
+</section>
 
-  <!-- Radar chart only -->
-  <div style="margin-top:32px;max-width:600px;margin-left:auto;margin-right:auto;">
-    <div class="chart-container">
-      <h4 style="margin-bottom:16px;font-size:15px;color:var(--text-secondary);text-align:center;">可行性雷达评分</h4>
-      <div class="chart-box"><canvas id="feaRadar"></canvas></div>
+<!-- ===== 下一步行动 ===== -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">🚀 30分钟快速启动指南</h2>
+    <p class="section-desc">从零开始，30分钟内让你的OpenClaw能用起来</p>
+  </div>
+  <div class="grid-3">
+    <div class="card card-glow" style="text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">🦞</div>
+      <h4>Step A · 部署OpenClaw</h4>
+      <p style="font-size:13px;">
+        Docker: <code style="background:var(--bg-surface);padding:2px 6px;border-radius:4px;">docker run -d -p 8080:8080 openclaw/core</code><br/>
+        或阿里云一键部署（搜索"OpenClaw 镜像"）<br/>
+        配置LLM：阿里云百炼免费额度 / Ollama
+      </p>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-muted);">⏱ 约10分钟</div>
+    </div>
+    <div class="card card-glow" style="text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">📦</div>
+      <h4>Step B · 安装基础Skills</h4>
+      <p style="font-size:13px;">
+        从ClawHub安装必备技能包：<br/>
+        <code style="background:var(--bg-surface);padding:2px 6px;border-radius:4px;">claw install python-executor</code><br/>
+        <code style="background:var(--bg-surface);padding:2px 6px;border-radius:4px;">claw install file-reader</code><br/>
+        <code style="background:var(--bg-surface);padding:2px 6px;border-radius:4px;">claw install web-requester</code>
+      </p>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-muted);">⏱ 约5分钟</div>
+    </div>
+    <div class="card card-glow" style="text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">🎯</div>
+      <h4>Step C · 挑一个系统跑MVP</h4>
+      <p style="font-size:13px;">
+        推荐从<strong>系统三（线上库存）</strong>或<strong>系统四（群聊机器人）</strong>开始<br/>
+        安装对应Skill → 配置参数 → 输入测试数据<br/>
+        LLM自动输出结果，端到端验证
+      </p>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-muted);">⏱ 约1~2天跑通</div>
     </div>
   </div>
 </section>
@@ -1059,15 +802,14 @@
 <footer class="footer">
   <p style="margin-bottom:8px;">
     <i class="fas fa-gem" style="color:var(--gold);margin-right:6px;"></i>
-    珠宝智慧管理·四大系统需求与可行性报告
+    珠宝智慧管理 · OpenClaw MVP实施路径
   </p>
-  <p>报告生成：2026年5月12日 · 聚焦需求分析与技术可行性 · 费用投入暂不计入</p>
+  <p>报告生成：2026年5月13日 · 聚焦最小成本MVP验证 · 技术栈：OpenClaw + ClawHub Skills + LLM</p>
 </footer>
 
-<!-- ================================================================ -->
 <script>
 (function(){
-  // Navbar
+  // Navbar scroll
   document.querySelectorAll('.navbar-links a').forEach(function(a){
     a.addEventListener('click', function(){
       document.querySelectorAll('.navbar-links a').forEach(function(x){x.classList.remove('active')});
@@ -1078,11 +820,10 @@
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Module tabs
-  function initTabs(containerId) {
-    var container = document.getElementById(containerId);
-    if (!container) return;
-    var parent = container.closest('.section') || container;
+  // System tabs
+  (function(){
+    var container = document.getElementById('sysTabs');
+    var parent = container.closest('.section');
     var tabs = parent.querySelectorAll('.module-tab');
     var panels = parent.querySelectorAll('.module-panel');
     tabs.forEach(function(tab){
@@ -1094,37 +835,9 @@
         if (panel) panel.classList.add('active');
       });
     });
-  }
-  initTabs('reqTabs');
-  initTabs('feaTabs');
-
-  // Radar chart
-  setTimeout(function(){
-    var canvas = document.getElementById('feaRadar');
-    if (!canvas) return;
-    new Chart(canvas, {
-      type: 'radar',
-      data: {
-        labels: ['技术可行性','团队能力','市场竞争力','合规风险'],
-        datasets: [
-          { label: '光谱AI质检', data: [4.5,3.5,4.0,4.0], borderColor: '#C9A84C', backgroundColor: 'rgba(201,168,76,0.08)', pointBackgroundColor: '#C9A84C', borderWidth: 2 },
-          { label: 'VR宝石穿戴', data: [4.0,3.5,4.5,4.0], borderColor: '#64A0FF', backgroundColor: 'rgba(100,160,255,0.08)', pointBackgroundColor: '#64A0FF', borderWidth: 2 },
-          { label: '线上渠道库存', data: [5.0,4.0,4.5,4.5], borderColor: '#FFA032', backgroundColor: 'rgba(255,160,50,0.08)', pointBackgroundColor: '#FFA032', borderWidth: 2 },
-          { label: '群聊机器人', data: [4.0,4.0,4.5,3.5], borderColor: '#A078FF', backgroundColor: 'rgba(160,120,255,0.08)', pointBackgroundColor: '#A078FF', borderWidth: 2 }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: true,
-        scales: {
-          r: { min: 0, max: 5, ticks: { stepSize: 1, color: '#6B6560', backdropColor: 'transparent' }, grid: { color: '#2A2735' }, pointLabels: { color: '#A09890', font: { size: 11 } } }
-        },
-        plugins: {
-          legend: { position: 'bottom', labels: { color: '#A09890', font: { size: 11 } } }
-        }
-      }
-    });
-  }, 300);
+  })();
 })();
 </script>
 </body>
 </html>
+<!-- updated -->
