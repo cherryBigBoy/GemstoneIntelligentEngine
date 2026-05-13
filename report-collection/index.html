@@ -229,10 +229,57 @@
   padding: 6px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
   color: var(--text-secondary); text-decoration: none; transition: all 0.2s;
   cursor: pointer;
+
+/* === Legacy Responsive === */
+@media (max-width: 900px) {
+  .legacy-navbar { padding: 0 20px; }
+  .legacy-content { padding: 0 20px; }
+  .flow-arrow { display: none; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2-1 { grid-template-columns: 1fr; }
+  .section { padding: 40px 24px; }
+}
+
+@media (max-width: 600px) {
+  .legacy-navbar { flex-wrap: wrap; height: auto; min-height: 48px; padding: 8px 16px; gap: 4px; }
+  .legacy-navbar-links { flex-wrap: wrap; gap: 0; }
+  .legacy-navbar-links .legacy-tab { padding: 4px 10px; font-size: 12px; }
+  .legacy-content { padding: 0 12px; }
+  .grid-4 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .section { padding: 28px 12px; }
+  .section-title { font-size: 24px; }
+}
+
+
+/* === Legacy: original traditional scheme classes === */
+    .grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+      .grid-3,.grid-2-1,.grid-4{grid-template-columns:1fr}
+    .flow{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:16px 0}
+    .flow-step{background:var(--bg-surface);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px 20px;text-align:center;min-width:130px;flex:1}
+    .flow-step .step-icon{font-size:28px;margin-bottom:6px}
+    .flow-step .step-label{font-size:13px;font-weight:600}
+    .flow-step .step-desc{font-size:12px;color:var(--text-muted);margin-top:2px}
+    .flow-arrow{color:var(--text-muted);font-size:20px}
+    .progress-bar{height:6px;background:var(--bg-surface);border-radius:3px;overflow:hidden;margin:8px 0}
+    .progress-fill{height:100%;border-radius:3px;background:var(--accent-gradient)}
+    .chart-box{position:relative;width:100%;min-height:240px}
+    .chart-box canvas{width:100%!important;height:auto!important;max-height:240px}
+    .tag-orange{background:rgba(255,160,50,0.12);color:#FFA032}
+.chart-container{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:24px;margin-top:32px}
+    .collapse-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:8px 0;color:var(--gold);font-size:14px;font-weight:500}
+    .collapse-toggle i{transition:transform .3s}
+    .collapse-toggle.active i{transform:rotate(180deg)}
+    .collapse-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+    .collapse-body.open{max-height:5000px}
+
 }
 .legacy-navbar-links .legacy-tab:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
 .legacy-navbar-links .legacy-tab.active { background: rgba(201,168,76,0.12); color: var(--gold-light); }
 </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
 <div class="bg-ambient"></div>
